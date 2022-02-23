@@ -3,9 +3,14 @@ export const lightColors = {
 
   shape: "#E5E5E5",
 
+  border: {
+    primary: "rgba(255, 255, 255, 0.98)",
+  },
+
   text: {
-    primary: "#272727",
+    primary: "#030303",
     secondary: "#606060",
+    disabled: "#909090",
   },
 
   button: {

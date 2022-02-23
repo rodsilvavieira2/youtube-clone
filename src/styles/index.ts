@@ -1,7 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 
 import { lightColors } from "./colors";
-import { Button, Icon } from "./components";
+import { Button, Icon, Divider } from "./components";
 
 const lightMode = {
   colors: {
@@ -14,11 +14,13 @@ export const theme = extendTheme({
   components: {
     Button,
     Icon,
+    Divider,
   },
   styles: {
     global: {
       body: {
         fontFamily: "'Roboto', sans-serif;",
+        color: "text.primary",
       },
     },
   },
