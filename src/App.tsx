@@ -1,15 +1,22 @@
-import { Header } from "components";
-import { Sidebar } from "components/sidebar";
+import { SidebarContainer } from "containers";
+import { useDispatch } from "react-redux";
 
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
+import { Header } from "@components";
+import { toggleIsDeskTopSidebarOpen } from "@redux/slices/macro-actions";
 
 export const App = () => {
+  const dispatch = useDispatch();
+
   return (
-    <Flex h="100vh" w="100vw" flexDir="column">
-      <Header />
-      <Flex h="100%">
-        <Sidebar />
+    <Box h="100vh" w="100vw">
+      <Header onToggleSidebar={() => dispatch(toggleIsDeskTopSidebarOpen())} />
+
+      <Flex h="calc(100vh - 3.5rem)" overflow="hidden">
+        <SidebarContainer />
+
+        <Box maxW="100%" overflow="hidden" />
       </Flex>
-    </Flex>
+    </Box>
   );
 };
