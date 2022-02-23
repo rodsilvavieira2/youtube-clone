@@ -1,41 +1,16 @@
-import { v4 } from "uuid";
+import { Box } from "@chakra-ui/react";
 
-import { Box, Divider, Flex } from "@chakra-ui/react";
-import { YoutubeExplore, YoutubeHome, YouTubeInscriptions } from "@icons";
+import { CollapsedDesktopSidebar } from "./collapsed-desktop-sidebar";
+import { ExpandedDesktopSidebar } from "./expanded-desktop-sidebar";
 
-import { SidebarItem } from "./sidebar-item";
+type SidebarProps = {
+  isSidebarOpen: boolean;
+};
 
-export const libConfig = [
-  {
-    id: v4(),
-    text: "Início",
-    to: "/",
-    icon: YoutubeHome,
-  },
-  {
-    id: v4(),
-    text: "Explorar",
-    to: "/explore",
-    icon: YoutubeExplore,
-  },
-  {
-    id: v4(),
-    text: "Iscrições",
-    to: "inscriptions",
-    icon: YouTubeInscriptions,
-  },
-];
-
-export const Sidebar = () => {
+export const Sidebar = ({ isSidebarOpen }: SidebarProps) => {
   return (
-    <Box as="aside">
-      <Flex flexDir="column">
-        {libConfig.map((item) => (
-          <SidebarItem key={item.id} {...item} />
-        ))}
-      </Flex>
-
-      <Divider />
+    <Box as="aside" overflowY="auto" pr="3" flexShrink={0}>
+      {isSidebarOpen ? <ExpandedDesktopSidebar /> : <CollapsedDesktopSidebar />}
     </Box>
   );
 };
