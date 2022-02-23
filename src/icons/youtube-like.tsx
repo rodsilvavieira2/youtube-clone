@@ -1,8 +1,9 @@
 import { IconType } from "react-icons";
 
-export const YoutubeLike: IconType = () => {
+export const YoutubeLike: IconType = (props) => {
   return (
     <svg
+      {...props}
       viewBox="0 0 24 24"
       preserveAspectRatio="xMidYMid meet"
       focusable="false"

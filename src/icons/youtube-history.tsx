@@ -1,8 +1,9 @@
 import { IconType } from "react-icons";
 
-export const YoutubeHistory: IconType = () => {
+export const YoutubeHistory: IconType = (props) => {
   return (
     <svg
+      {...props}
       viewBox="0 0 24 24"
       preserveAspectRatio="xMidYMid meet"
       focusable="false"

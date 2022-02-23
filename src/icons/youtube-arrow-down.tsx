@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 
-export const YoutubeMyVideo: IconType = (props) => {
+export const YoutubeArrowDown: IconType = (props) => {
   return (
     <svg
       {...props}
@@ -13,7 +13,7 @@ export const YoutubeMyVideo: IconType = (props) => {
       width="24px"
     >
       <g>
-        <path d="M10,8l6,4l-6,4V8L10,8z M21,3v18H3V3H21z M20,4H4v16h16V4z" />
+        <path d="M12,15.7L5.6,9.4l0.7-0.7l5.6,5.6l5.6-5.6l0.7,0.7L12,15.7z" />
       </g>
     </svg>
   );
