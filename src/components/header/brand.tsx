@@ -1,14 +1,18 @@
-import { MdMenu } from "react-icons/md";
-
 import { Box, HStack, IconButton, Image } from "@chakra-ui/react";
+import { YoutubeMenu } from "@icons";
 
-export const Brand = () => {
+type BrandProps = {
+  onToggleSidebar: () => void;
+};
+
+export const Brand = ({ onToggleSidebar }: BrandProps) => {
   return (
     <HStack>
       <IconButton
+        onClick={onToggleSidebar}
         isRound
         variant="mutedIconButton"
-        icon={<MdMenu />}
+        icon={<YoutubeMenu />}
         aria-label="exmpandir ou retrair menu"
       />
 

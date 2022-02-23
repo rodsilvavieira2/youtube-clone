@@ -1,8 +1,5 @@
-import { BsGrid3X3Gap } from "react-icons/bs";
-import { MdOutlineNotifications } from "react-icons/md";
-import { RiVideoAddLine } from "react-icons/ri";
-
 import { Avatar, HStack, IconButton } from "@chakra-ui/react";
+import { YoutubeAddVideo, YoutubeGrid, YoutubeBell } from "@icons";
 
 export const AccountActions = () => {
   return (
@@ -10,21 +7,21 @@ export const AccountActions = () => {
       <IconButton
         isRound
         variant="mutedIconButton"
-        icon={<RiVideoAddLine />}
+        icon={<YoutubeAddVideo />}
         aria-label="manipule videos"
       />
 
       <IconButton
         isRound
         variant="mutedIconButton"
-        icon={<BsGrid3X3Gap />}
+        icon={<YoutubeGrid />}
         aria-label="ver outras áreas"
       />
 
       <IconButton
         isRound
         variant="mutedIconButton"
-        icon={<MdOutlineNotifications />}
+        icon={<YoutubeBell />}
         aria-label="ver notificações"
       />
 

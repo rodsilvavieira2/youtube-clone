@@ -4,18 +4,15 @@ import { AccountActions } from "./account-actions";
 import { Brand } from "./brand";
 import { SearchInput } from "./search-input";
 
-export const Header = () => {
+type HeaderProps = {
+  onToggleSidebar: () => void;
+};
+
+export const Header = ({ onToggleSidebar }: HeaderProps) => {
   return (
-    <Box
-      borderBottom="1px solid"
-      borderColor="shape"
-      w="100%"
-      bg="primary"
-      color="text.primary"
-      px="5"
-    >
+    <Box w="100%" bg="primary" color="text.primary" px="5">
       <Flex h="14" alignItems="center" justifyContent="space-between">
-        <Brand />
+        <Brand onToggleSidebar={onToggleSidebar} />
 
         <SearchInput />
 
