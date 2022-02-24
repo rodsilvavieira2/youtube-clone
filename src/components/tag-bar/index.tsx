@@ -55,11 +55,20 @@ export const TagBar = () => {
   return (
     <HStack
       h="3.5rem"
+      alignItems="center"
       borderBottom="1px solid"
       borderTop="1px solid"
-      borderColor="border.primary"
-      overflowX="auto"
+      borderColor="shape"
+      overflow="hidden"
       maxW="100%"
+      position="static"
+      top={0}
+      px="6"
+      css={{
+        "&::-webkit-scrollbar": {
+          width: "0px",
+        },
+      }}
     >
       {tabItems.map((item) => (
         <TagItem key={item.id} {...item} />

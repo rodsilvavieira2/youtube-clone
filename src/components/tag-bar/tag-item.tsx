@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 export type TagItemProps = {
   tagName: string;
@@ -15,8 +15,9 @@ export const TagItem = ({ onClick, tagName }: TagItemProps) => {
       px="3"
       py="2"
       onClick={onClick}
-      borderRadius="base"
+      borderRadius="full"
       alignItems="center"
+      flexShrink={0}
     >
       <Text
         whiteSpace="nowrap"

@@ -24,3 +24,4 @@ export * from "./youtube-denunciations";
 export * from "./youtube-help";
 export * from "./youtube-feedback";
 export * from "./youtube-shorts";
+export * from "./youtube-queue";
