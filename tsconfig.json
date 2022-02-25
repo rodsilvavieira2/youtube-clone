@@ -20,7 +20,9 @@
       "@components": ["components"],
       "@styles": ["styles"],
       "@icons": ["icons"],
-      "@redux/*": ["redux/*"]
+      "@redux/*": ["redux/*"],
+      "@pages": ["pages"],
+      "@containers": ["containers"]
     }
   },
   "include": ["src"],

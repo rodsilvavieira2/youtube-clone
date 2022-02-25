@@ -1,7 +1,11 @@
 /* eslint-disable react/no-unused-prop-types */
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
+import "dayjs/locale/pt"; // usar locale espanhol globalmente
 import {
   Avatar,
   Box,
@@ -13,7 +17,11 @@ import {
   Button,
   Icon,
 } from "@chakra-ui/react";
-import { YouTubeQueue, YoutubeWatchLater } from "@icons";
+import { YouTubeQueue, YoutubeWatchLater } from "@icons"; // carregar sob demanda
+
+dayjs.locale("pt");
+
+dayjs.extend(relativeTime);
 
 type ThumbnailProps = {
   thumbnailUrl: string;
@@ -29,6 +37,8 @@ export const Thumbnail = ({
   canalName,
   thumbnailUrl,
   title,
+  views,
+  postedAt,
 }: ThumbnailProps) => {
   const [isHover, setIsHover] = useState(false);
   const [timeId, setTimeId] = useState<number>(0);
@@ -44,8 +54,19 @@ export const Thumbnail = ({
     setIsHover(false);
   };
 
+  const transformViews = (currentViews: number): string => {
+    if (currentViews >= 1000000)
+      return `${views.toString().slice(0, 2)} mi visualizações`;
+
+    if (currentViews >= 1000) {
+      return `${views.toString().slice(0, 3)} mil visualizações`;
+    }
+
+    return `${currentViews} visualizações`;
+  };
+
   return (
-    <Box as={motion.div} position="relative" h="18rem">
+    <Box as={Link} to="/:video" position="relative" h="18rem">
       <motion.div
         transition={{
           stiffness: 0,
@@ -66,7 +87,7 @@ export const Thumbnail = ({
           },
           ...(isHover && {
             scale: 1.2,
-            zIndex: 99999,
+            zIndex: 2,
             y: 30,
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
 
@@ -103,15 +124,18 @@ export const Thumbnail = ({
             <Text
               mt="1.5"
               color="text.secondary"
-              w="100%"
+              maxW="35ch"
               textAlign="left"
               as="small"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
             >
               {canalName}
             </Text>
 
             <Flex color="text.secondary" w="100%" alignItems="center">
-              <Text as="small">33 mil visualizações</Text>
+              <Text as="small">{transformViews(views)}</Text>
 
               <Box
                 mx="1"
@@ -121,7 +145,9 @@ export const Thumbnail = ({
                 borderRadius="full"
               />
 
-              <Text as="small">há 2 dias</Text>
+              <Text as="small">
+                {dayjs(postedAt).locale("pt-br").fromNow()}
+              </Text>
             </Flex>
           </Flex>
         </HStack>

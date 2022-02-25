@@ -70,7 +70,7 @@ export const guideConfig = [
   },
 ];
 
-export const ExpandedDesktopSidebar = () => {
+export const SidebarContent = () => {
   return (
     <Flex w="14.5rem" flexDir="column">
       <Flex flexDir="column">

@@ -1,15 +1,16 @@
 import { Box } from "@chakra-ui/react";
 
-import { CollapsedDesktopSidebar } from "./collapsed-desktop-sidebar";
+import { CompactSidebar } from "../shared/compact-sidebar";
 import { ExpandedDesktopSidebar } from "./expanded-desktop-sidebar";
 
 type SidebarProps = {
-  isSidebarOpen: boolean;
+  isOpen: boolean;
 };
 
-export const Sidebar = ({ isSidebarOpen }: SidebarProps) => {
+export const DesktopSidebar = ({ isOpen }: SidebarProps) => {
   return (
     <Box
+      display={{ base: "none", lg: "block" }}
       as="aside"
       overflowY="auto"
       pr="3"
@@ -18,7 +19,7 @@ export const Sidebar = ({ isSidebarOpen }: SidebarProps) => {
       left={0}
       bottom={0}
     >
-      {isSidebarOpen ? <ExpandedDesktopSidebar /> : <CollapsedDesktopSidebar />}
+      {isOpen ? <ExpandedDesktopSidebar /> : <CompactSidebar />}
     </Box>
   );
 };

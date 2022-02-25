@@ -1,26 +1,39 @@
-import { SidebarContainer, ThumbnailContainer } from "containers";
 import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
 
-import { Box, Flex } from "@chakra-ui/react";
-import { Header, TagBar } from "@components";
-import { toggleIsDeskTopSidebarOpen } from "@redux/slices/macro-actions";
+import { Box, useBreakpointValue } from "@chakra-ui/react";
+import { Header } from "@components";
+import { Home, Video } from "@pages";
+import {
+  toggleIsDeskTopSidebarOpen,
+  toggleMobileSidebarOpen,
+} from "@redux/slices/macro-actions";
 
 export const App = () => {
   const dispatch = useDispatch();
 
+  const isOnMobile = useBreakpointValue({
+    base: true,
+    lg: false,
+  });
+
   return (
     <Box h="100vh" w="100vw">
-      <Header onToggleSidebar={() => dispatch(toggleIsDeskTopSidebarOpen())} />
+      <Header
+        onToggleSidebar={() =>
+          dispatch(
+            isOnMobile
+              ? toggleMobileSidebarOpen()
+              : toggleIsDeskTopSidebarOpen()
+          )
+        }
+      />
 
-      <Flex h="calc(100vh - 3.5rem)" overflow="hidden">
-        <SidebarContainer />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-        <Box w="100%" h="100%" overflow="hidden">
-          <TagBar />
-
-          <ThumbnailContainer />
-        </Box>
-      </Flex>
+        <Route path="/:video" element={<Video />} />
+      </Routes>
     </Box>
   );
 };

@@ -1,11 +1,8 @@
 import { v4 } from "uuid";
 
-import { Flex } from "@chakra-ui/react";
-import { YoutubeExplore, YoutubeHome, YoutubeLib, YoutubeShorts } from "@icons";
+import { YoutubeHome, YoutubeExplore, YoutubeShorts, YoutubeLib } from "@icons";
 
-import { CollapsedDesktopSidebarItem } from "./collapsed-desktop-sidebar-item";
-
-const itemsConfig = [
+export const itemsConfig = [
   {
     id: v4(),
     text: "Inicio",
@@ -37,13 +34,3 @@ const itemsConfig = [
     icon: YoutubeLib,
   },
 ];
-
-export const CollapsedDesktopSidebar = () => {
-  return (
-    <Flex flexDir="column" w="4.5rem">
-      {itemsConfig.map((item) => (
-        <CollapsedDesktopSidebarItem key={item.id} {...item} />
-      ))}
-    </Flex>
-  );
-};

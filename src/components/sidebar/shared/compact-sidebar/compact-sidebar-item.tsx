@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 
 import { Icon, Stack, Text } from "@chakra-ui/react";
 
-type CollapsedDesktopSidebarProps = {
+type CompactSidebarItemProps = {
   icon: IconType;
   text: string;
   to: string;
 };
 
-export const CollapsedDesktopSidebarItem = ({
+export const CompactSidebarItem = ({
   icon,
   text,
   to,
-}: CollapsedDesktopSidebarProps) => {
+}: CompactSidebarItemProps) => {
   return (
     <Stack
       spacing={2}
