@@ -1,17 +1,64 @@
-import { Flex, Stack, Box, HStack } from "@chakra-ui/react";
+import { useMemo } from "react";
+
+import { Stack, Flex } from "@chakra-ui/react";
+import {
+  RelatedVideoThumbnail,
+  TagBar,
+  VideoComments,
+  VideoInfoAndActions,
+} from "@components";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import faker from "@faker-js/faker";
+
+const relatedVideos = Array.from({ length: 50 }, () => ({
+  id: faker.datatype.uuid(),
+  title: faker.lorem.words(3),
+  views: faker.datatype.number(),
+  canalName: faker.name.findName(),
+  avatarUrl: faker.internet.avatar(),
+  thumbnailUrl: faker.image.city(),
+  postedAt: faker.date.past(),
+}));
 
 export const Video = () => {
+  const relatedVideosRendered = useMemo(() => {
+    return relatedVideos.map((item) => (
+      <RelatedVideoThumbnail key={item.id} {...item} />
+    ));
+  }, []);
+
   return (
-    <HStack spacing={6} h="calc(100vh - 3.5rem)" px="12" py="6" overflow="auto">
-      <Stack w="64%">
-        <Box w="49.5625rem" bg="red" h="27.875rem" />
+    <Flex bg="bg">
+      <Stack w={{ base: "100%", lg: "65%", xl: "70%" }} p="1.5rem">
+        <Flex
+          h="68vh"
+          border="1px solid"
+          borderColor="black"
+          borderStyle="dotted"
+          flexShrink={0}
+        />
 
-        <Box h="5rem" bg="yellow" />
+        <VideoInfoAndActions />
 
-        <Box h="13rem" bg="green" />
+        <Stack spacing={6} display={{ base: "flex", lg: "none" }}>
+          <TagBar />
+
+          <Stack>{relatedVideosRendered}</Stack>
+        </Stack>
+
+        <VideoComments />
       </Stack>
 
-      <Flex w="36%" bg="blue" h="100%" />
-    </HStack>
+      <Stack
+        display={{ base: "none", lg: "flex" }}
+        w={{ base: "35%", xl: "30%" }}
+        p="1.5rem"
+        pl="0"
+      >
+        <TagBar />
+
+        <Stack>{relatedVideosRendered}</Stack>
+      </Stack>
+    </Flex>
   );
 };

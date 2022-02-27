@@ -15,9 +15,11 @@ export const Header = ({ onToggleSidebar }: HeaderProps) => {
       bg="primary"
       color="text.primary"
       px="5"
-      position="static"
+      position="sticky"
+      zIndex="banner"
       top={0}
       left={0}
+      right={0}
     >
       <Flex h="14" alignItems="center" justifyContent="space-between">
         <Brand onToggleSidebar={onToggleSidebar} />

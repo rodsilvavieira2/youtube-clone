@@ -16,11 +16,15 @@ export const theme = extendTheme({
     Icon,
     Divider,
   },
+  fontSizes: {
+    xs: "0.8125rem",
+  },
   styles: {
     global: {
       body: {
         fontFamily: "'Roboto', sans-serif;",
         color: "text.primary",
+        bg: "bg",
       },
     },
   },

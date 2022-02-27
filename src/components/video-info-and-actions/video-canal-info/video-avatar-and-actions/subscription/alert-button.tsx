@@ -1,0 +1,13 @@
+import { IconButton } from "@chakra-ui/react";
+import { YoutubeBell } from "@icons";
+
+export const AlertButton = () => {
+  return (
+    <IconButton
+      variant="mutedIconButton"
+      aria-label="sininho"
+      icon={<YoutubeBell />}
+      isRound
+    />
+  );
+};

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 import { SimpleGrid } from "@chakra-ui/react";
-import { Thumbnail, ThumbnailSkeleton } from "@components";
+import { ThumbnailSkeleton, VideoThumbnail } from "@components";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import faker from "@faker-js/faker";
 
@@ -43,7 +43,7 @@ export const ThumbnailContainer = () => {
       ) : (
         <>
           {thumbnails.map((item) => (
-            <Thumbnail key={item.id} {...item} />
+            <VideoThumbnail key={item.id} {...item} />
           ))}
         </>
       )}
