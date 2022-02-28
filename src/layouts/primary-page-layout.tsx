@@ -9,7 +9,7 @@ const ContentContainer = () => {
   const isSidebarDesktopOpen = useSelector(selectIsDeskTopSidebarOpen);
 
   return (
-    <Box ml={isSidebarDesktopOpen ? "15.4375rem" : "4.5rem"}>
+    <Box ml={isSidebarDesktopOpen ? "15rem" : "4.5rem"}>
       <Outlet />
     </Box>
   );

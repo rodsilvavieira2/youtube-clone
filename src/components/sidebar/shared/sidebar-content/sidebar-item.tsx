@@ -27,7 +27,7 @@ export const SidebarItem = ({ to, icon, text }: SidebarItem) => {
       spacing={6}
       alignItems="center"
       px="1.5rem"
-      h="3rem"
+      h="2.5rem"
     >
       <Icon flexShrink={0} fontSize="1.5rem" as={icon} />
 

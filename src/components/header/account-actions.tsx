@@ -1,9 +1,9 @@
-import { Avatar, HStack, IconButton } from "@chakra-ui/react";
+import { Avatar, Center, HStack, IconButton } from "@chakra-ui/react";
 import { YoutubeAddVideo, YoutubeGrid, YoutubeBell } from "@icons";
 
 export const AccountActions = () => {
   return (
-    <HStack>
+    <HStack spacing={2}>
       <IconButton
         isRound
         variant="mutedIconButton"
@@ -25,7 +25,9 @@ export const AccountActions = () => {
         aria-label="ver notificações"
       />
 
-      <Avatar size="sm" name="rodrigo silva" />
+      <Center h="2.5rem" w="3.75rem">
+        <Avatar size="sm" name="rodrigo silva" />
+      </Center>
     </HStack>
   );
 };

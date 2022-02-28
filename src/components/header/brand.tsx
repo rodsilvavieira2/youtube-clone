@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import { Box, HStack, IconButton, Image } from "@chakra-ui/react";
-import { YoutubeMenu } from "@icons";
+import { Box, HStack, Icon, IconButton } from "@chakra-ui/react";
+import { YoutubeBrandLogo, YoutubeMenu } from "@icons";
 
 type BrandProps = {
   onToggleSidebar: () => void;
@@ -9,7 +9,7 @@ type BrandProps = {
 
 export const Brand = ({ onToggleSidebar }: BrandProps) => {
   return (
-    <HStack spacing={6} alignItems="center" as={Link} to="/">
+    <HStack spacing={4} alignItems="center" as={Link} to="/">
       <IconButton
         onClick={onToggleSidebar}
         isRound
@@ -19,7 +19,7 @@ export const Brand = ({ onToggleSidebar }: BrandProps) => {
       />
 
       <Box flexShrink={0} w="24">
-        <Image maxH="100%" maxW="100%" alt="youtube" src="/logo.png" />
+        <Icon as={YoutubeBrandLogo} />
       </Box>
     </HStack>
   );

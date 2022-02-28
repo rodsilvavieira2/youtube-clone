@@ -14,7 +14,7 @@ export const Header = ({ onToggleSidebar }: HeaderProps) => {
       w="100%"
       bg="primary"
       color="text.primary"
-      px="5"
+      px="4"
       position="sticky"
       zIndex="banner"
       top={0}

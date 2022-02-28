@@ -36,3 +36,5 @@ export * from "./youtube-flag";
 export * from "./youtube-partial-circle";
 export * from "./youtube-block";
 export * from "./youtube-transition";
+export * from "./youtube-brand-logo";
+export * from "./youtube-close";

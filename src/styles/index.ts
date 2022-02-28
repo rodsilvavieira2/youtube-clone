@@ -25,6 +25,17 @@ export const theme = extendTheme({
         fontFamily: "'Roboto', sans-serif;",
         color: "text.primary",
         bg: "bg",
+        "*::-webkit-scrollbar": {
+          width: "8px",
+        },
+        "*::-webkit-scrollbar-thumb": {
+          height: "56px",
+          width: "8px",
+          borderRadius: "8px",
+          bg: "scrollbarThumb",
+          backgroundClip: "content-box",
+          zIndex: "99999",
+        },
       },
     },
   },

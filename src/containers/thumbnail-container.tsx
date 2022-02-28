@@ -24,11 +24,11 @@ export const ThumbnailContainer = () => {
   });
 
   return (
-    <SimpleGrid minChildWidth="20rem" gap="4" p="6" pb="40">
+    <SimpleGrid minChildWidth="15.875rem" gap="4" p="6" pb="40">
       {isLoading ? (
         <>
-          {Array.from({ length: 9 }, () => (
-            <ThumbnailSkeleton />
+          {Array.from({ length: 9 }, (_, k) => (
+            <ThumbnailSkeleton key={k} />
           ))}
         </>
       ) : (

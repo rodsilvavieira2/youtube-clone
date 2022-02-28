@@ -4,7 +4,7 @@ export const lightColors = {
   shape: "#E5E5E5",
 
   border: {
-    primary: "rgba(255, 255, 255, 0.98)",
+    primary: "#ccc",
     secondary: "rgba(0, 0, 0, 0.1)",
   },
 
@@ -16,6 +16,8 @@ export const lightColors = {
 
   highlight: "#065fd4",
 
+  scrollbarThumb: "#909090",
+
   text: {
     primary: "#030303",
     secondary: "#606060",
@@ -26,5 +28,7 @@ export const lightColors = {
     text: "rgb(96, 96, 96)",
     activate: "#CBD5E0",
     bg: "rgba(0, 0, 0, 0.05)",
+    focus: "#e9e9e9",
+    hover: "#f0f0f0",
   },
 };
