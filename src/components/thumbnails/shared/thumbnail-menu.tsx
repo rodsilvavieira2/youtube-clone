@@ -1,14 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import styled from "styled-components";
-
 import {
   IconButton,
   Menu,
   MenuButton,
   MenuDivider,
-  MenuItem,
   MenuList,
 } from "@chakra-ui/react";
+import { StyledMenuItem } from "@components";
 import {
   YoutubeBock,
   YoutubeFlag,
@@ -28,14 +26,6 @@ type ThumbnailMenuProps = {
     bottom?: number | string;
   };
 };
-
-const StyledMenuItem = styled(MenuItem)`
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: var(--chakra-colors-shape);
-  }
-`;
 
 export const ThumbnailMenu = ({ position, className }: ThumbnailMenuProps) => {
   const { bottom, left, right, top } = position || {};

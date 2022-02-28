@@ -60,7 +60,7 @@ export const VideoThumbnail = ({
             bounce: 0,
           },
           ...(isHover && {
-            scale: 1.2,
+            scale: 1.1,
             zIndex: 2,
             y: 30,
             boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",

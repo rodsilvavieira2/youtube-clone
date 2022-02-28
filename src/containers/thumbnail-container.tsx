@@ -24,16 +24,7 @@ export const ThumbnailContainer = () => {
   });
 
   return (
-    <SimpleGrid
-      minChildWidth="20rem"
-      gap="4"
-      flexWrap="wrap"
-      w="100%"
-      h="calc(100% - 3.5rem)"
-      px="8"
-      py="6"
-      overflow="auto"
-    >
+    <SimpleGrid minChildWidth="20rem" gap="4" p="6" pb="40">
       {isLoading ? (
         <>
           {Array.from({ length: 9 }, () => (

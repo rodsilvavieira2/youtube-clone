@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { Box, HStack, IconButton, Image } from "@chakra-ui/react";
 import { YoutubeMenu } from "@icons";
 
@@ -7,7 +9,7 @@ type BrandProps = {
 
 export const Brand = ({ onToggleSidebar }: BrandProps) => {
   return (
-    <HStack spacing={6} alignItems="center">
+    <HStack spacing={6} alignItems="center" as={Link} to="/">
       <IconButton
         onClick={onToggleSidebar}
         isRound

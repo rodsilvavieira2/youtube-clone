@@ -22,7 +22,8 @@
       "@icons": ["icons"],
       "@redux/*": ["redux/*"],
       "@pages": ["pages"],
-      "@containers": ["containers"]
+      "@containers": ["containers"],
+      "@layouts": ["layouts"]
     }
   },
   "include": ["src"],

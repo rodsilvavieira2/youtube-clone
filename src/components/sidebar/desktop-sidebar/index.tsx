@@ -10,14 +10,16 @@ type SidebarProps = {
 export const DesktopSidebar = ({ isOpen }: SidebarProps) => {
   return (
     <Box
-      display={{ base: "none", lg: "block" }}
+      display={{ base: "none", lg: "inline-block" }}
       as="aside"
-      overflowY="auto"
-      pr="3"
+      overflow="hidden"
+      position="fixed"
+      top="3.5rem"
+      bg="primary"
       flexShrink={0}
-      position="static"
       left={0}
       bottom={0}
+      zIndex="banner"
     >
       {isOpen ? <ExpandedDesktopSidebar /> : <CompactSidebar />}
     </Box>

@@ -1,23 +1,17 @@
-import { Flex, Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { TagBar } from "@components";
-import {
-  MobileSidebarContainer,
-  DesktopSidebarContainer,
-  ThumbnailContainer,
-} from "@containers";
+import { ThumbnailContainer } from "@containers";
 
-export const Home = () => {
+export default function Home() {
   return (
-    <Flex h="calc(100vh - 3.5rem)" overflow="hidden">
-      <DesktopSidebarContainer />
-
-      <MobileSidebarContainer />
-
-      <Box w="100%" h="100%" overflow="hidden">
-        <TagBar />
-
-        <ThumbnailContainer />
+    <>
+      <Box w="100%" h="3.5rem">
+        <Box position="fixed" zIndex="banner">
+          <TagBar />
+        </Box>
       </Box>
-    </Flex>
+
+      <ThumbnailContainer />
+    </>
   );
-};
+}

@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { Box, useBreakpointValue } from "@chakra-ui/react";
-import { Header } from "@components";
-import { Home, Video } from "@pages";
+import { FallBack, Header } from "@components";
+import { PrimaryPageLayout } from "@layouts";
+import { Home, Library, Video, History } from "@pages";
 import {
   toggleIsDeskTopSidebarOpen,
   toggleMobileSidebarOpen,
@@ -29,11 +31,17 @@ export const App = () => {
         }
       />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <Suspense fallback={<FallBack />}>
+        <Routes>
+          <Route path="/" element={<PrimaryPageLayout />}>
+            <Route element={<Home />} index />
+            <Route path="feed/library" element={<Library />} />
+            <Route path="feed/history" element={<History />} />s
+          </Route>
 
-        <Route path="/:video" element={<Video />} />
-      </Routes>
+          <Route path="/:video" element={<Video />} />
+        </Routes>
+      </Suspense>
     </Box>
   );
 };

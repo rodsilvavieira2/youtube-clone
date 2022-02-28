@@ -42,7 +42,11 @@ export const ThumbnailInfo = ({
         textOverflow="ellipsis"
         lineHeight="1.25rem"
         as="strong"
-        w="75%"
+        w="100%"
+        css={{
+          "-webkit-box-orient": "vertical",
+          "-webkit-line-clamp": "2",
+        }}
       >
         {title}
       </Text>
@@ -56,6 +60,10 @@ export const ThumbnailInfo = ({
         whiteSpace="nowrap"
         overflow="hidden"
         textOverflow="ellipsis"
+        css={{
+          "-webkit-box-orient": "vertical",
+          "-webkit-line-clamp": "2",
+        }}
       >
         {canalName}
       </Text>

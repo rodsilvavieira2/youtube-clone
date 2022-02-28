@@ -1,25 +1,25 @@
 /* eslint-disable no-console */
-import { Box, Image } from "@chakra-ui/react";
+import { Box, BoxProps, Image } from "@chakra-ui/react";
 
 import { PreviewActions } from "./preview-actions";
 
 type RelatedVideoPreviewProps = {
   thumbnailUrl: string;
   alt: string;
+  propsStyles?: BoxProps;
 };
 
 const onClick = () => {
   console.log("click");
 };
 
-export const RelatedVideoPreview = ({
+export const VideoPreview = ({
   alt,
   thumbnailUrl,
+  propsStyles,
 }: RelatedVideoPreviewProps) => {
   return (
     <Box
-      h="5.75rem"
-      w="10.5rem"
       pos="relative"
       flexShrink={0}
       css={{
@@ -32,6 +32,7 @@ export const RelatedVideoPreview = ({
           visibility: "hidden",
         },
       }}
+      {...propsStyles}
     >
       <Image src={thumbnailUrl} alt={alt} w="100%" h="100%" objectFit="fill" />
 

@@ -8,62 +8,24 @@ import { TagItem } from "./tag-item";
 
 const onClick = () => console.log("click");
 
-const tabItems = [
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-  {
-    id: v4(),
-    tagName: faker.lorem.words(3),
-    onClick,
-  },
-];
+const tabItems = Array.from({ length: 15 }, () => ({
+  id: v4(),
+  tagName: faker.lorem.words(3),
+  onClick,
+}));
 
 export const TagBar = () => {
   return (
     <HStack
       h="3.5rem"
+      px="6"
+      bg="primary"
       alignItems="center"
       borderBottom="1px solid"
       borderTop="1px solid"
       borderColor="shape"
       overflow="hidden"
       maxW="100%"
-      position="static"
-      top={0}
-      px="6"
       css={{
         "&::-webkit-scrollbar": {
           width: "0px",

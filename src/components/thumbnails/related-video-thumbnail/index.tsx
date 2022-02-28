@@ -3,8 +3,7 @@ import { Omit } from "react-redux";
 import { HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
-import { ThumbnailInfo, ThumbnailMenu } from "../shared";
-import { RelatedVideoPreview } from "./related-video-preview";
+import { ThumbnailInfo, ThumbnailMenu, VideoPreview } from "../shared";
 
 type RelatedVideoThumbnailProps = Omit<BasicVideoData, "id" | "avatarUrl">;
 
@@ -29,7 +28,7 @@ export const RelatedVideoThumbnail = ({
         },
       }}
     >
-      <RelatedVideoPreview alt={title} thumbnailUrl={thumbnailUrl} />
+      <VideoPreview alt={title} thumbnailUrl={thumbnailUrl} />
 
       <ThumbnailInfo
         title={title}

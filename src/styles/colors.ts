@@ -5,12 +5,16 @@ export const lightColors = {
 
   border: {
     primary: "rgba(255, 255, 255, 0.98)",
-    secondary: "#909090",
+    secondary: "rgba(0, 0, 0, 0.1)",
   },
 
   bg: "#F9F9F9",
 
+  bgSecondary: "#f1f1f1",
+
   error: "#c00",
+
+  highlight: "#065fd4",
 
   text: {
     primary: "#030303",

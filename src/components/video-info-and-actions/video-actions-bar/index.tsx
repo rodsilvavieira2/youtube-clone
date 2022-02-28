@@ -1,4 +1,4 @@
-import { Flex, HStack, Text } from "@chakra-ui/react";
+import { HStack, Text } from "@chakra-ui/react";
 
 import { ClipButton } from "./clip-button";
 import { DislikeButton } from "./dislike-button";

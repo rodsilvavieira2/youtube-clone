@@ -20,7 +20,7 @@ const relatedVideos = Array.from({ length: 50 }, () => ({
   postedAt: faker.date.past(),
 }));
 
-export const Video = () => {
+export default function Video() {
   const relatedVideosRendered = useMemo(() => {
     return relatedVideos.map((item) => (
       <RelatedVideoThumbnail key={item.id} {...item} />
@@ -61,4 +61,4 @@ export const Video = () => {
       </Stack>
     </Flex>
   );
-};
+}
