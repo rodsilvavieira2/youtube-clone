@@ -1,3 +1,4 @@
+import Explore from "pages/explore";
 import { Suspense } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
@@ -36,7 +37,10 @@ export const App = () => {
           <Route path="/" element={<PrimaryPageLayout />}>
             <Route element={<Home />} index />
             <Route path="feed/library" element={<Library />} />
-            <Route path="feed/history" element={<History />} />s
+
+            <Route path="feed/history" element={<History />} />
+
+            <Route path="feed/explore" element={<Explore />} />
           </Route>
 
           <Route path="/:video" element={<Video />} />

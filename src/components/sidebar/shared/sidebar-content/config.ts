@@ -21,7 +21,7 @@ export const libConfig = [
   {
     id: v4(),
     text: "Explorar",
-    to: "/explore",
+    to: "/feed/explore",
     icon: YoutubeExplore,
   },
   {
