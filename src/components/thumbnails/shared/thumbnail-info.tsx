@@ -32,8 +32,9 @@ export const ThumbnailInfo = ({
   views,
 }: ThumbnailInfoProps) => {
   return (
-    <Flex flexDir="column" h="100%">
+    <Flex flexDir="column" h="100%" overflow="hidden">
       <Text
+        display="-webkit-box"
         fontSize="0.875rem"
         maxH="2.5rem"
         whiteSpace="normal"
@@ -43,6 +44,7 @@ export const ThumbnailInfo = ({
         lineHeight="1.25rem"
         as="strong"
         w="100%"
+        title={title}
         css={{
           WebkitBoxOrient: "vertical",
           WebkitLineClamp: "2",
@@ -60,10 +62,7 @@ export const ThumbnailInfo = ({
         whiteSpace="nowrap"
         overflow="hidden"
         textOverflow="ellipsis"
-        css={{
-          WebkitBoxOrient: "vertical",
-          WebkitLineClamp: "2",
-        }}
+        title={canalName}
       >
         {canalName}
       </Text>

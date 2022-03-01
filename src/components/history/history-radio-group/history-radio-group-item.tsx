@@ -15,7 +15,9 @@ export const HistoryRadioGroupItem = ({
       alignItems="center"
       justifyContent="space-between"
       as="label"
-      py="1rem"
+      p="1rem"
+      borderBottom="1px solid"
+      borderColor="border.primary"
     >
       <Text fontSize="sm">{label}</Text>
 

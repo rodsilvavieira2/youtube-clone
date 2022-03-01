@@ -5,7 +5,13 @@ import { HistoryRadioGroupItem } from "./history-radio-group-item";
 export const HistoryRadioGroup = () => {
   return (
     <Stack>
-      <Heading fontWeight="400" size="sm">
+      <Heading
+        fontWeight="400"
+        size="sm"
+        padding="1rem"
+        borderBottom="1px solid"
+        borderColor="border.primary"
+      >
         Tipo de hístorico
       </Heading>
 

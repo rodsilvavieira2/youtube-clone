@@ -14,7 +14,12 @@ export const LibrarySectionUserData = ({
   return (
     <Stack>
       <Flex h="13rem" alignItems="center" justifyContent="center">
-        <Stack alignItems="center" justifyContent="center" alignSelf="flex-end">
+        <Stack
+          spacing={4}
+          alignItems="center"
+          justifyContent="center"
+          alignSelf="flex-end"
+        >
           <Avatar h="5rem" w="5rem" src={avatarUrl} size="lg" name={userName} />
 
           <Text>{userName}</Text>
@@ -24,12 +29,12 @@ export const LibrarySectionUserData = ({
       <Box
         w="100%"
         css={{
-          "div + div": {
+          div: {
             borderTop: "1px solid",
-            borderColor: "border.secondary",
+            borderColor: "rgba(0, 0, 0, 0.1)",
           },
           "div:last-child": {
-            borderBottom: "1px solid",
+            borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
           },
         }}
       >

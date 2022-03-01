@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Flex, Heading, Stack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Stack } from "@chakra-ui/react";
 import {
   HistoryActions,
   HistoryInput,
@@ -22,8 +22,8 @@ const items: BasicVideoData[] = Array.from({ length: 20 }, () => ({
 export default function History() {
   return (
     <Flex>
-      <Stack w="60%" p="3">
-        <Heading fontWeight="500" size="md" mb="6">
+      <Stack w="60%" pl="18px" py="25px">
+        <Heading fontWeight="600" fontSize="md" mb="6" w="100%">
           Hístorico de exibição
         </Heading>
 
@@ -34,13 +34,15 @@ export default function History() {
         </Stack>
       </Stack>
 
-      <Stack w="40%" bg="bgSecondary" p="6">
-        <HistoryInput />
+      <Box w="40%" bg="bgSecondary" py="6" px="1.75rem">
+        <Stack position="fixed">
+          <HistoryInput />
 
-        <HistoryRadioGroup />
+          <HistoryRadioGroup />
 
-        <HistoryActions />
-      </Stack>
+          <HistoryActions />
+        </Stack>
+      </Box>
     </Flex>
   );
 }

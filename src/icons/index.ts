@@ -38,3 +38,6 @@ export * from "./youtube-block";
 export * from "./youtube-transition";
 export * from "./youtube-brand-logo";
 export * from "./youtube-close";
+export * from "./youtube-trash";
+export * from "./youtube-pause-circle";
+export * from "./youtube-setting";

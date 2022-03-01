@@ -34,6 +34,7 @@ export const MobileSidebar = ({ isOpen, onClose }: MobileSidebarProps) => {
       size="xs"
     >
       <DrawerOverlay />
+
       <DrawerContent width="fit-content !important" overflowY="auto">
         <Stack>
           <Flex px="1.2rem" w="100%" py="3">

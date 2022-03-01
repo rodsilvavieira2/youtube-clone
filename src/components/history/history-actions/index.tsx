@@ -1,25 +1,22 @@
 import { Stack } from "@chakra-ui/react";
-import { YoutubeBock } from "@icons";
+import { YoutubePauseCircle, YoutubeSetting, YoutubeTrash } from "@icons";
 
 import { HistoryActionsItem } from "./history-actions-item";
 
 export const HistoryActions = () => {
   return (
-    <Stack>
-      <HistoryActionsItem
-        text="limpar todo o hitórico de exibição"
-        icon={<YoutubeBock />}
-      />
+    <Stack pt="1rem" px="1rem">
+      <HistoryActionsItem icon={<YoutubeTrash />}>
+        limpar todo o hitórico de exibição
+      </HistoryActionsItem>
 
-      <HistoryActionsItem
-        text="pausar o histórico de visualizações "
-        icon={<YoutubeBock />}
-      />
+      <HistoryActionsItem icon={<YoutubePauseCircle />}>
+        pausar o histórico de visualizações
+      </HistoryActionsItem>
 
-      <HistoryActionsItem
-        text="gerencia todo o historico"
-        icon={<YoutubeBock />}
-      />
+      <HistoryActionsItem icon={<YoutubeSetting />}>
+        gerencia todo o historico
+      </HistoryActionsItem>
     </Stack>
   );
 };

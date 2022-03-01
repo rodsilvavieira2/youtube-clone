@@ -57,9 +57,9 @@ export const LibrarySection = ({
 
       <SimpleGrid
         mt="4"
+        columns={4}
         minChildWidth="13.125rem"
         gap="2"
-        columns={4}
         rowGap={10}
       >
         {items.slice(0, maxItems).map((item) => (

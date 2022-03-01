@@ -23,7 +23,7 @@ const items: BasicVideoData[] = Array.from({ length: 50 }, () => ({
 export default function Library() {
   return (
     <Flex>
-      <Stack spacing="8" w="82%" p="4">
+      <Stack spacing="8" w="80%" pl="5" py="4">
         <LibrarySection
           icon={YoutubeHistory}
           items={items}
@@ -55,7 +55,7 @@ export default function Library() {
         />
       </Stack>
 
-      <Box w="18%" pr="6" pl="4">
+      <Box w="20%" pr="6" pl="2rem">
         <LibrarySectionUserData avatarUrl="" userName="Rodrigo silva" />
       </Box>
     </Flex>

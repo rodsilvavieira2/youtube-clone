@@ -16,6 +16,8 @@ export const lightColors = {
 
   highlight: "#065fd4",
 
+  activeLink: "rgb(229,229,229)",
+
   scrollbarThumb: "#909090",
 
   text: {
