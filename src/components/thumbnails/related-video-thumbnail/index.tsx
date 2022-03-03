@@ -1,11 +1,17 @@
-import { Omit } from "react-redux";
-
-import { HStack } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
-import { ThumbnailInfo, ThumbnailMenu, VideoPreview } from "../shared";
+import {
+  VideoInfoCanalName,
+  VideoInfoTitle,
+  VideoInfoViewsAndTimeFromNow,
+  VideoPreview,
+} from "../shared";
 
-type RelatedVideoThumbnailProps = Omit<BasicVideoData, "id" | "avatarUrl">;
+type RelatedVideoThumbnailProps = Pick<
+  BasicVideoData,
+  "canalName" | "postedAt" | "thumbnailUrl" | "title" | "views"
+>;
 
 export const RelatedVideoThumbnail = ({
   canalName,
@@ -28,22 +34,15 @@ export const RelatedVideoThumbnail = ({
         },
       }}
     >
-      <VideoPreview alt={title} thumbnailUrl={thumbnailUrl} />
+      <Box>
+        <VideoPreview to="/" alt={title} thumbnailUrl={thumbnailUrl} />
 
-      <ThumbnailInfo
-        title={title}
-        canalName={canalName}
-        views={views}
-        postedAt={postedAt}
-      />
+        <VideoInfoTitle>{title}</VideoInfoTitle>
 
-      <ThumbnailMenu
-        className="thumbnailMenu"
-        position={{
-          right: "0",
-          top: "0",
-        }}
-      />
+        <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
+
+        <VideoInfoViewsAndTimeFromNow postedAt={postedAt} views={views} />
+      </Box>
     </HStack>
   );
 };

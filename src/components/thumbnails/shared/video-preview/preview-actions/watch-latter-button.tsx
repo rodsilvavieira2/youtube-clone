@@ -1,3 +1,5 @@
+import { MouseEvent } from "react";
+
 import { IconButton } from "@chakra-ui/react";
 import { YoutubeWatchLater } from "@icons";
 
@@ -6,6 +8,12 @@ type WatchLaterButtonProps = {
 };
 
 export const WatchLaterButton = ({ onClick }: WatchLaterButtonProps) => {
+  const _onClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    onClick?.();
+  };
+
   return (
     <IconButton
       aria-label="assistir mais tarde"
@@ -13,7 +21,7 @@ export const WatchLaterButton = ({ onClick }: WatchLaterButtonProps) => {
       icon={<YoutubeWatchLater fill="#fff" />}
       borderRadius="2px"
       size="sm"
-      onClick={onClick}
+      onClick={_onClick}
       _hover={{}}
       _active={{}}
     />

@@ -1,37 +1,26 @@
-import { Stack } from "@chakra-ui/react";
+import { Stack, StackProps } from "@chakra-ui/react";
 
 import { AddToQueueButton } from "./add-to-queue-button";
 import { WatchLaterButton } from "./watch-latter-button";
 
 type PreviewActionsProps = {
-  position?: {
-    left?: number | string;
-    right?: number | string;
-    top?: number | string;
-    bottom?: number | string;
-  };
-  className?: string;
+  stylesProps?: StackProps;
   onWatchLater: () => void;
   onAddToQueue: () => void;
 };
 
 export const PreviewActions = ({
-  position,
   onAddToQueue,
   onWatchLater,
-  className,
+  stylesProps,
 }: PreviewActionsProps) => {
-  const { bottom, right = "0.3rem", left, top = "0.3rem" } = position || {};
-
   return (
     <Stack
       position="absolute"
+      right="0.3rem"
+      top="0.3rem"
       spacing={1}
-      left={left}
-      top={top}
-      right={right}
-      bottom={bottom}
-      className={className}
+      {...stylesProps}
     >
       <WatchLaterButton onClick={onWatchLater} />
 

@@ -18,6 +18,7 @@ const items: BasicVideoData[] = Array.from({ length: 50 }, () => ({
   thumbnailUrl: faker.image.abstract(),
   title: faker.lorem.words(10),
   views: faker.datatype.number(),
+  description: faker.lorem.words(50),
 }));
 
 export default function Library() {

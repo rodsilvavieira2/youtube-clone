@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import { Link } from "react-router-dom";
+
 import { Box, BoxProps, Image } from "@chakra-ui/react";
 
 import { PreviewActions } from "./preview-actions";
@@ -6,7 +8,8 @@ import { PreviewActions } from "./preview-actions";
 type RelatedVideoPreviewProps = {
   thumbnailUrl: string;
   alt: string;
-  propsStyles?: BoxProps;
+  to: string;
+  styleProps?: BoxProps;
 };
 
 const onClick = () => {
@@ -16,30 +19,35 @@ const onClick = () => {
 export const VideoPreview = ({
   alt,
   thumbnailUrl,
-  propsStyles,
+  styleProps,
+  to,
 }: RelatedVideoPreviewProps) => {
   return (
     <Box
       pos="relative"
       flexShrink={0}
+      as={Link}
+      to={to}
       css={{
         "&:hover": {
-          ".previewAction": {
+          ".preview-action": {
             visibility: "visible",
           },
         },
-        ".previewAction": {
+        ".preview-action": {
           visibility: "hidden",
         },
       }}
-      {...propsStyles}
+      {...styleProps}
     >
       <Image src={thumbnailUrl} alt={alt} w="100%" h="100%" objectFit="fill" />
 
       <PreviewActions
         onAddToQueue={onClick}
         onWatchLater={onClick}
-        className="previewAction"
+        stylesProps={{
+          className: "preview-action",
+        }}
       />
     </Box>
   );

@@ -15,7 +15,7 @@ export const UserDataItem = ({ amount, info }: UserDataItemProps) => {
     >
       <Text fontSize="inherit">{info}</Text>
 
-      <Text fontSize="inherits">{amount}</Text>
+      <Text fontSize="inherit">{amount}</Text>
     </Flex>
   );
 };

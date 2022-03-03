@@ -9,11 +9,12 @@ import { BasicVideoData } from "@types";
 const videos: BasicVideoData[] = Array.from({ length: 50 }, () => ({
   id: faker.datatype.uuid(),
   avatarUrl: faker.internet.avatar(),
-  canalName: faker.lorem.words(10),
+  canalName: faker.name.findName(),
   postedAt: faker.date.past(),
   thumbnailUrl: faker.image.abstract(),
-  title: faker.lorem.words(10),
+  title: faker.lorem.words(50),
   views: faker.datatype.number(),
+  description: faker.lorem.words(50),
 }));
 
 const category = [

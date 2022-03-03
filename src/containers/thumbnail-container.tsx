@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
-import { SimpleGrid } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { ThumbnailSkeleton, VideoThumbnail } from "@components";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import faker from "@faker-js/faker";
@@ -24,7 +24,18 @@ export const ThumbnailContainer = () => {
   });
 
   return (
-    <SimpleGrid minChildWidth="15.875rem" gap="4" p="6" pb="40">
+    <Flex
+      css={{
+        "& > *": {
+          flex: "0 1 20rem",
+        },
+      }}
+      gap="0.5rem"
+      p="6"
+      pb="40"
+      flexWrap="wrap"
+      justifyContent="center"
+    >
       {isLoading ? (
         <>
           {Array.from({ length: 9 }, (_, k) => (
@@ -38,6 +49,6 @@ export const ThumbnailContainer = () => {
           ))}
         </>
       )}
-    </SimpleGrid>
+    </Flex>
   );
 };

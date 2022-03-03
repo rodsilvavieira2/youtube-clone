@@ -17,6 +17,7 @@ const items: BasicVideoData[] = Array.from({ length: 20 }, () => ({
   thumbnailUrl: faker.image.abstract(),
   title: faker.lorem.words(5),
   views: faker.datatype.number(),
+  description: faker.lorem.words(50),
 }));
 
 export default function History() {
@@ -27,14 +28,14 @@ export default function History() {
           Hístorico de exibição
         </Heading>
 
-        <Stack>
+        <Stack spacing={4}>
           {items.map((item) => (
             <HistoryThumbnail key={item.id} {...item} />
           ))}
         </Stack>
       </Stack>
 
-      <Box w="40%" bg="bgSecondary" py="6" px="1.75rem">
+      <Box w="40%" bg="bg" py="6" px="1.75rem">
         <Stack position="fixed">
           <HistoryInput />
 

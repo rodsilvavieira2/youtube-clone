@@ -6,8 +6,8 @@ export const YoutubeClose: IconType = (props) => {
       viewBox="0 0 24 24"
       preserveAspectRatio="xMidYMid meet"
       focusable="false"
-      height="100%"
-      width="100%"
+      height="24px"
+      width="24px"
       {...props}
     >
       <g>

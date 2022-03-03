@@ -15,12 +15,10 @@ export const LibraryThumbnail = ({
   return (
     <Stack>
       <VideoPreview
-        propsStyles={{
-          w: "100%",
-          h: "7.375rem",
-        }}
+        styleProps={{ w: "100%", h: "7.375rem" }}
         thumbnailUrl={thumbnailUrl}
         alt={title}
+        to="/"
       />
 
       <ThumbnailInfo

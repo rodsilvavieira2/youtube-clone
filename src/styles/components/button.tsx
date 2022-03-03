@@ -19,21 +19,12 @@ export const Button: ComponentStyleConfig = {
       color: "text.primary",
       outline: "none",
       _active: {
-        bg: "shape",
+        bg: "button.activate",
       },
       _focus: {
         outline: "none",
         boxShadow: "none",
-        bg: "shape",
-      },
-    },
-    menuItem: {
-      bg: "red",
-      _hover: {
-        bg: "bg",
-      },
-      _focus: {
-        bg: "bg",
+        bg: "button.focus",
       },
     },
   },

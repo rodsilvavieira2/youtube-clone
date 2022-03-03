@@ -1,4 +1,3 @@
-import Explore from "pages/explore";
 import { Suspense } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
@@ -6,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { Box, useBreakpointValue } from "@chakra-ui/react";
 import { FallBack, Header } from "@components";
 import { PrimaryPageLayout } from "@layouts";
-import { Home, Library, Video, History } from "@pages";
+import { Home, Library, Video, History, Explore } from "@pages";
 import {
   toggleIsDeskTopSidebarOpen,
   toggleMobileSidebarOpen,
@@ -36,6 +35,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<PrimaryPageLayout />}>
             <Route element={<Home />} index />
+
             <Route path="feed/library" element={<Library />} />
 
             <Route path="feed/history" element={<History />} />

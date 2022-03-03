@@ -1,10 +1,12 @@
-/* eslint-disable react/no-unescaped-entities */
 import {
+  Box,
   IconButton,
   Menu,
   MenuButton,
+  MenuButtonProps,
   MenuDivider,
   MenuList,
+  BoxProps,
 } from "@chakra-ui/react";
 import { StyledMenuItem } from "@components";
 import {
@@ -16,62 +18,60 @@ import {
   YoutubeVerticalMore,
   YoutubeWatchLater,
 } from "@icons";
+import { preventDefaultClick } from "@util";
 
 type ThumbnailMenuProps = {
-  className?: string;
-  position?: {
-    left?: number | string;
-    right?: number | string;
-    top?: number | string;
-    bottom?: number | string;
-  };
+  containerProps?: BoxProps;
+  buttonProps?: MenuButtonProps;
 };
 
-export const ThumbnailMenu = ({ position, className }: ThumbnailMenuProps) => {
-  const { bottom, left, right, top } = position || {};
+export const ThumbnailMenu = ({
+  buttonProps,
+  containerProps,
+}: ThumbnailMenuProps) => {
+  const { onClick, ...restButtonProps } = buttonProps || {};
 
   return (
     <Menu>
-      <MenuButton
-        className={className}
-        aria-label="mais opções"
+      <Box
+        display="inline-block"
+        onClick={preventDefaultClick(onClick)}
         position="absolute"
-        size="xs"
-        isRound
-        as={IconButton}
-        left={left}
-        bottom={bottom}
-        right={right}
-        top={top}
-        icon={<YoutubeVerticalMore />}
-      />
+        {...containerProps}
+      >
+        <MenuButton
+          aria-label="mais opções"
+          as={IconButton}
+          size="md"
+          isRound
+          variant="mutedIconButton"
+          icon={<YoutubeVerticalMore />}
+          {...restButtonProps}
+        />
+      </Box>
 
       <MenuList>
-        <StyledMenuItem icon={<YouTubeQueue />} fontSize="sm">
-          Adiconar à fila
+        <StyledMenuItem icon={<YouTubeQueue />}>Adiconar à fila</StyledMenuItem>
+
+        <StyledMenuItem icon={<YoutubeWatchLater />}>
+          Salvar em &quot; Assistir mais tarder &quot;
         </StyledMenuItem>
 
-        <StyledMenuItem icon={<YoutubeWatchLater />} fontSize="sm">
-          Salvar em quot "Assistir mais tarder"
-        </StyledMenuItem>
-
-        <StyledMenuItem icon={<YoutubeSaveList />} fontSize="sm">
+        <StyledMenuItem icon={<YoutubeSaveList />}>
           Salvar na playslist
         </StyledMenuItem>
 
-        <MenuDivider />
+        <MenuDivider borderColor="border.primary" />
 
-        <StyledMenuItem icon={<YoutubeBock />} fontSize="sm">
+        <StyledMenuItem icon={<YoutubeBock />}>
           Não tenho interesse
         </StyledMenuItem>
 
-        <StyledMenuItem icon={<YoutubePartialCircle />} fontSize="sm">
+        <StyledMenuItem icon={<YoutubePartialCircle />}>
           Não recomendar o canal
         </StyledMenuItem>
 
-        <StyledMenuItem icon={<YoutubeFlag />} fontSize="sm">
-          Denuciar
-        </StyledMenuItem>
+        <StyledMenuItem icon={<YoutubeFlag />}>Denuciar</StyledMenuItem>
       </MenuList>
     </Menu>
   );

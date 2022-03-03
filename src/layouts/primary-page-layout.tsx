@@ -1,19 +1,8 @@
-import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
-
-import { Box } from "@chakra-ui/react";
-import { DesktopSidebarContainer, MobileSidebarContainer } from "@containers";
-import { selectIsDeskTopSidebarOpen } from "@redux/slices";
-
-const ContentContainer = () => {
-  const isSidebarDesktopOpen = useSelector(selectIsDeskTopSidebarOpen);
-
-  return (
-    <Box ml={isSidebarDesktopOpen ? "15rem" : "4.5rem"}>
-      <Outlet />
-    </Box>
-  );
-};
+import {
+  DesktopSidebarContainer,
+  MobileSidebarContainer,
+  PageLayoutContentContainer,
+} from "@containers";
 
 export const PrimaryPageLayout = () => {
   return (
@@ -22,7 +11,7 @@ export const PrimaryPageLayout = () => {
 
       <MobileSidebarContainer />
 
-      <ContentContainer />
+      <PageLayoutContentContainer />
     </>
   );
 };

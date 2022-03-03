@@ -23,7 +23,8 @@
       "@redux/*": ["redux/*"],
       "@pages": ["pages"],
       "@containers": ["containers"],
-      "@layouts": ["layouts"]
+      "@layouts": ["layouts"],
+      "@util": ["util"]
     }
   },
   "include": ["src"],
