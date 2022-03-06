@@ -27,14 +27,14 @@ export const ThumbnailContainer = () => {
     <Flex
       css={{
         "& > *": {
-          flex: "0 1 20rem",
+          flex: "1 1 20rem",
+          height: "100%",
         },
       }}
-      gap="0.5rem"
-      p="6"
-      pb="40"
+      px="4"
+      py="1.5rem"
+      gap="1rem"
       flexWrap="wrap"
-      justifyContent="center"
     >
       {isLoading ? (
         <>

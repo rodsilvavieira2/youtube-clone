@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { useBreakpointValue } from "@chakra-ui/react";
+import { Box, useBreakpointValue } from "@chakra-ui/react";
 import { CompactSidebar, MobileSidebar } from "@components";
 import {
   selectIsMobileSidebarOpen,
@@ -22,7 +22,11 @@ export const MobileSidebarContainer = () => {
   if (isOnMobileView) {
     return (
       <>
-        <CompactSidebar />
+        <Box as="aside" w="4.5rem" h="100%">
+          <Box h="100%" w="100%" position="fixed">
+            <CompactSidebar />
+          </Box>
+        </Box>
 
         <MobileSidebar isOpen={isMobileSidebarOpen} onClose={onClose} />
       </>

@@ -20,6 +20,8 @@ export const lightColors = {
 
   scrollbarThumb: "#909090",
 
+  badge: "rgba(0, 0, 0, 0.05)",
+
   text: {
     primary: "#030303",
     secondary: "#606060",

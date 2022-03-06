@@ -63,8 +63,8 @@ export const VideoThumbnail = ({
       <ThumbnailMenu
         containerProps={{
           className: "video-menu",
-          top: "8.6rem",
-          left: "89%",
+          top: "11.3rem",
+          right: 0,
           margin: 0,
           opacity: "0",
           _focus: {

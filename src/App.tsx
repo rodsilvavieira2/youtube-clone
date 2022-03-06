@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { Box, useBreakpointValue } from "@chakra-ui/react";
 import { FallBack, Header } from "@components";
 import { PrimaryPageLayout } from "@layouts";
-import { Home, Library, Video, History, Explore } from "@pages";
+import { Home, Library, Video, History, Explore, WatchLater } from "@pages";
 import {
   toggleIsDeskTopSidebarOpen,
   toggleMobileSidebarOpen,
@@ -41,6 +41,8 @@ export const App = () => {
             <Route path="feed/history" element={<History />} />
 
             <Route path="feed/explore" element={<Explore />} />
+
+            <Route path="feed/watch-later" element={<WatchLater />} />
           </Route>
 
           <Route path="/:video" element={<Video />} />

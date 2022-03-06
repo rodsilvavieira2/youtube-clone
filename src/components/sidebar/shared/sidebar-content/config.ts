@@ -54,7 +54,7 @@ export const guideConfig = [
   {
     id: v4(),
     text: "Assitir mais tarde",
-    to: "/watch-later",
+    to: "/feed/watch-later",
     icon: YoutubeWatchLater,
   },
   {

@@ -1,5 +1,5 @@
 import { IconType } from "react-icons/lib";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { HStack, Icon, Text } from "@chakra-ui/react";
 
@@ -10,7 +10,9 @@ export type SidebarItem = {
 };
 
 export const SidebarItem = ({ to, icon, text }: SidebarItem) => {
-  const isActive = false;
+  const { pathname } = useLocation();
+
+  const isActive = pathname === to;
 
   return (
     <HStack

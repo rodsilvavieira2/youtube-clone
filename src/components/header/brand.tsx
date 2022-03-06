@@ -9,7 +9,7 @@ type BrandProps = {
 
 export const Brand = ({ onToggleSidebar }: BrandProps) => {
   return (
-    <HStack spacing={4} alignItems="center" as={Link} to="/">
+    <HStack spacing={4} alignItems="center">
       <IconButton
         onClick={onToggleSidebar}
         isRound
@@ -18,7 +18,7 @@ export const Brand = ({ onToggleSidebar }: BrandProps) => {
         aria-label="exmpandir ou retrair menu"
       />
 
-      <Box flexShrink={0} w="24">
+      <Box flexShrink={0} w="24" as={Link} to="/">
         <Icon as={YoutubeBrandLogo} />
       </Box>
     </HStack>

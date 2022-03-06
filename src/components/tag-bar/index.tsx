@@ -18,7 +18,6 @@ export const TagBar = () => {
   return (
     <HStack
       h="3.5rem"
-      px="6"
       bg="primary"
       alignItems="center"
       borderBottom="1px solid"
