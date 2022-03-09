@@ -27,7 +27,7 @@ export const ThumbnailContainer = () => {
     <Flex
       css={{
         "& > *": {
-          flex: "1 1 20rem",
+          flex: "1 1 14.9375rem",
           height: "100%",
         },
       }}

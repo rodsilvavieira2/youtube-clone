@@ -9,7 +9,7 @@ type BrandProps = {
 
 export const Brand = ({ onToggleSidebar }: BrandProps) => {
   return (
-    <HStack spacing={4} alignItems="center">
+    <HStack spacing={{ base: 0 }} alignItems="center">
       <IconButton
         onClick={onToggleSidebar}
         isRound

@@ -28,7 +28,13 @@ export const App = () => {
   });
 
   return (
-    <Box h="100vh" w="100vw" pos="relative" overflow="auto">
+    <Box
+      h="100vh"
+      w="100vw"
+      pos="relative"
+      overflow="auto"
+      data-type="root-container"
+    >
       <Header
         onToggleSidebar={() =>
           dispatch(

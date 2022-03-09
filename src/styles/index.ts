@@ -36,6 +36,9 @@ export const theme = extendTheme({
           backgroundClip: "content-box",
           zIndex: "99999",
         },
+        ".disable-scroll": {
+          overflow: "hidden",
+        },
       },
     },
   },

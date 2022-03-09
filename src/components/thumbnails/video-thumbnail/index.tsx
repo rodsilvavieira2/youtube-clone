@@ -32,7 +32,6 @@ export const VideoThumbnail = ({
       as={Link}
       to="/:video"
       position="relative"
-      minH="18rem"
       _hover={{
         ".video-menu": {
           opacity: 1,
@@ -41,37 +40,37 @@ export const VideoThumbnail = ({
     >
       <ThumbnailPhoto thumbnailUrl={thumbnailUrl} alt={title} />
 
-      <HStack spacing="3" position="relative">
-        <Avatar
-          w="2.25rem"
-          h="2.25rem"
-          src={avatarUrl}
-          alignSelf="flex-start"
-        />
+      <HStack spacing="3" alignItems="normal" position="relative">
+        <HStack>
+          <Avatar
+            w="2.25rem"
+            h="2.25rem"
+            src={avatarUrl}
+            alignSelf="flex-start"
+          />
 
-        <Box overflow="hidden">
-          <Flex flexDir="column" w="100%">
-            <VideoInfoTitle w="90%">{title}</VideoInfoTitle>
+          <Box overflow="hidden" w="100%">
+            <Flex flexDir="column">
+              <VideoInfoTitle w="90%">{title}</VideoInfoTitle>
 
-            <VideoInfoCanalName mt="1">{canalName}</VideoInfoCanalName>
+              <VideoInfoCanalName mt="1">{canalName}</VideoInfoCanalName>
 
-            <VideoInfoViewsAndTimeFromNow postedAt={postedAt} views={views} />
-          </Flex>
-        </Box>
+              <VideoInfoViewsAndTimeFromNow postedAt={postedAt} views={views} />
+            </Flex>
+          </Box>
+        </HStack>
+
+        <Flex data-type="menu">
+          <ThumbnailMenu
+            containerProps={{
+              className: "video-menu",
+              position: "absolute",
+              right: "-10px",
+              opacity: 0,
+            }}
+          />
+        </Flex>
       </HStack>
-
-      <ThumbnailMenu
-        containerProps={{
-          className: "video-menu",
-          top: "11.3rem",
-          right: 0,
-          margin: 0,
-          opacity: { base: "1", lg: "0" },
-          _focus: {
-            opacity: "1",
-          },
-        }}
-      />
     </Stack>
   );
 };

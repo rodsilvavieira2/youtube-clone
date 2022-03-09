@@ -12,7 +12,7 @@ type AccountActionsProps = {
 
 export const AccountActions = ({ onOpenMobileSearch }: AccountActionsProps) => {
   return (
-    <HStack spacing={2}>
+    <HStack spacing={3}>
       <IconButton
         isRound
         variant="mutedIconButton"
@@ -46,7 +46,7 @@ export const AccountActions = ({ onOpenMobileSearch }: AccountActionsProps) => {
         onClick={onOpenMobileSearch}
       />
 
-      <Center h="2.5rem" w="3.75rem">
+      <Center h="2.5rem" w={{ base: "fit-content", lg: "3.75rem" }}>
         <Avatar size="sm" name="rodrigo silva" />
       </Center>
     </HStack>

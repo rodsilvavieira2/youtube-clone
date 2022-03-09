@@ -36,7 +36,6 @@ export const ThumbnailMenu = ({
       <Box
         display="inline-block"
         onClick={preventDefaultClick(onClick)}
-        position="absolute"
         {...containerProps}
       >
         <MenuButton

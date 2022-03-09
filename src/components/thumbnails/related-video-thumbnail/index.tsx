@@ -10,12 +10,11 @@ import {
 
 type RelatedVideoThumbnailProps = Pick<
   BasicVideoData,
-  "canalName" | "postedAt" | "thumbnailUrl" | "title" | "views"
+  "canalName" | "thumbnailUrl" | "title" | "views"
 >;
 
 export const RelatedVideoThumbnail = ({
   canalName,
-  postedAt,
   thumbnailUrl,
   title,
   views,

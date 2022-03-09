@@ -8,7 +8,6 @@ import {
   MobileVideoComments,
   VideoInfoAndActions,
 } from "@components";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import faker from "@faker-js/faker";
 
 const relatedVideos = Array.from({ length: 50 }, () => ({

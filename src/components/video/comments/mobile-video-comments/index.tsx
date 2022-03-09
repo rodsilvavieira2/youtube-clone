@@ -53,6 +53,7 @@ export const MobileVideoComments = () => {
       >
         Comentários • {comments.length}
       </Button>
+
       <AnimatePresence>
         {isCommentsSlideVisible && (
           <CommentsSlider
