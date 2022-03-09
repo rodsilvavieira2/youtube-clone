@@ -6,3 +6,4 @@ export const Library = lazy(() => import("./library"));
 export const History = lazy(() => import("./history"));
 export const Explore = lazy(() => import("./explore"));
 export const WatchLater = lazy(() => import("./watch-later"));
+export const LikedVideos = lazy(() => import("./liked-videos"));

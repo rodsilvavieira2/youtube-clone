@@ -4,12 +4,12 @@ import { CompactSidebar } from "../shared/compact-sidebar";
 import { ExpandedDesktopSidebar } from "./expanded-desktop-sidebar";
 
 type SidebarProps = {
-  isOpen: boolean;
+  isExpanded: boolean;
 };
 
-export const DesktopSidebar = ({ isOpen }: SidebarProps) => {
+export const DesktopSidebar = ({ isExpanded }: SidebarProps) => {
   return (
-    <Box w={isOpen ? "15rem" : "4.5rem"} h="100%" flexShrink={0}>
+    <Box w={isExpanded ? "15rem" : "4.5rem"} h="100%" flexShrink={0}>
       <Box
         as="aside"
         overflow="hidden"
@@ -21,7 +21,7 @@ export const DesktopSidebar = ({ isOpen }: SidebarProps) => {
         bottom={0}
         zIndex="banner"
       >
-        {isOpen ? <ExpandedDesktopSidebar /> : <CompactSidebar />}
+        {isExpanded ? <ExpandedDesktopSidebar /> : <CompactSidebar />}
       </Box>
     </Box>
   );

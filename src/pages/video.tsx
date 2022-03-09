@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 
-import { Stack, Flex } from "@chakra-ui/react";
+import { Stack, Flex, Button } from "@chakra-ui/react";
 import {
   RelatedVideoThumbnail,
   TagBar,
   VideoComments,
+  MobileVideoComments,
   VideoInfoAndActions,
 } from "@components";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -28,25 +29,32 @@ export default function Video() {
   }, []);
 
   return (
-    <Flex bg="bg">
-      <Stack w={{ base: "100%", lg: "65%", xl: "70%" }} p="1.5rem">
-        <Flex
-          h="68vh"
-          border="1px solid"
-          borderColor="black"
-          borderStyle="dotted"
-          flexShrink={0}
-        />
+    <Flex bg="bg" flexDir="column">
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        h={["30vh", "68vh"]}
+        border="1px solid"
+        borderColor="black"
+        borderStyle="dotted"
+        flexShrink={0}
+      >
+        Um video incrivel
+        <Button>click</Button>
+      </Flex>
 
+      <Stack spacing={0} w={{ base: "100%", lg: "65%", xl: "70%" }} pt={0}>
         <VideoInfoAndActions />
 
-        <Stack spacing={6} display={{ base: "flex", lg: "none" }}>
-          <TagBar />
+        <MobileVideoComments />
 
-          <Stack>{relatedVideosRendered}</Stack>
-        </Stack>
+        <Stack mt="0.3rem !important">{relatedVideosRendered}</Stack>
 
-        <VideoComments />
+        <VideoComments
+          containerProps={{
+            display: { base: "none", lg: "flex" },
+          }}
+        />
       </Stack>
 
       <Stack

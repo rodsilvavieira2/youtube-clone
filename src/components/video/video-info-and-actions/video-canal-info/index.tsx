@@ -6,7 +6,7 @@ import { VideoDescription } from "./video-description";
 export const VideoCanalInfo = () => {
   return (
     <Stack
-      py="3"
+      py={{ base: "1", lg: "3" }}
       borderTop="1px solid"
       borderBottom="1px solid"
       borderColor="shape"

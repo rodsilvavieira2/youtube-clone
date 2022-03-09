@@ -1,19 +1,30 @@
 import { useState } from "react";
 
-import { Flex, Center, Icon, Input, IconButton } from "@chakra-ui/react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  Flex,
+  Center,
+  Icon,
+  Input,
+  IconButton,
+  FlexProps,
+} from "@chakra-ui/react";
 import faker from "@faker-js/faker";
 import { YoutubeSearch, YoutubeClose } from "@icons";
 
-import { SearchSuggestion } from "./search-suggestion";
+import { SearchSuggestion } from "../../shared";
 
 const suggestions = Array.from({ length: 14 }, () => ({
   id: faker.datatype.uuid(),
   text: faker.lorem.words(10),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: "search" as any,
 }));
 
-export const InputWrapper = () => {
+type InputWrapperProps = {
+  containerProps?: FlexProps;
+};
+
+export const InputWrapper = ({ containerProps }: InputWrapperProps) => {
   const [inputValue, setInputValue] = useState("");
 
   const onClearSearch = () => setInputValue("");
@@ -40,6 +51,7 @@ export const InputWrapper = () => {
           display: "block",
         },
       }}
+      {...containerProps}
     >
       <Center w="2.5rem" className="search-icon" display="none">
         <Icon as={YoutubeSearch} className="search-icon" fontSize="1.4rem" />

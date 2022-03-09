@@ -16,9 +16,10 @@ export const Brand = ({ onToggleSidebar }: BrandProps) => {
         variant="mutedIconButton"
         icon={<YoutubeMenu />}
         aria-label="exmpandir ou retrair menu"
+        display={{ base: "none", lg: "inline-flex" }}
       />
 
-      <Box flexShrink={0} w="24" as={Link} to="/">
+      <Box flexShrink={0} w={["20", "20", "24"]} as={Link} to="/">
         <Icon as={YoutubeBrandLogo} />
       </Box>
     </HStack>

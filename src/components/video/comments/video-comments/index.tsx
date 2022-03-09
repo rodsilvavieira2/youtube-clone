@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { v4 } from "uuid";
 
-import { Stack } from "@chakra-ui/react";
+import { Stack, StackProps } from "@chakra-ui/react";
 import faker from "@faker-js/faker";
 
+import { VideoCommentItem } from "../shared";
 import { VideoAddComment } from "./video-add-comment";
-import { VideoCommentItem } from "./video-comment-item";
 import { VideoCommentsHeader } from "./video-comments-header";
 
-export const comments = Array.from({ length: 50 }, () => ({
+const comments = Array.from({ length: 50 }, () => ({
   id: v4(),
   userName: faker.name.findName(),
   likes: faker.datatype.number(),
@@ -21,9 +21,13 @@ export const comments = Array.from({ length: 50 }, () => ({
   responses: [],
 }));
 
-export const VideoComments = () => {
+type VideoCommentsProps = {
+  containerProps?: StackProps;
+};
+
+export const VideoComments = ({ containerProps }: VideoCommentsProps) => {
   return (
-    <Stack spacing={6}>
+    <Stack spacing={6} {...containerProps}>
       <VideoCommentsHeader />
 
       <VideoAddComment />

@@ -3,7 +3,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 import { Avatar, Box, HStack, Text } from "@chakra-ui/react";
 
-import "dayjs/locale/pt"; // usar locale espanhol globalmente
+import "dayjs/locale/pt";
 import { Comment } from "./comment";
 import { VideoCommentItemDislikeButton } from "./video-comment-item-dislike-button";
 import { VideoCommentItemLikeButton } from "./video-comment-item-like-button";
@@ -12,13 +12,14 @@ dayjs.locale("pt");
 
 dayjs.extend(relativeTime);
 
-type CommentItemData = {
+export type CommentItemProps = {
+  id: string;
   userName: string;
   comment: string;
   likes: number;
   avatarUrl: string;
   isDisliked: boolean;
-  responses: CommentItemData[];
+  responses: CommentItemProps[];
   commentedAt: Date;
   onIncrementLike: () => void;
 };
@@ -32,7 +33,7 @@ export const VideoCommentItem = ({
   responses,
   commentedAt,
   onIncrementLike,
-}: CommentItemData) => {
+}: CommentItemProps) => {
   return (
     <HStack w="100%">
       <Avatar

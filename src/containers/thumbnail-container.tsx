@@ -31,8 +31,9 @@ export const ThumbnailContainer = () => {
           height: "100%",
         },
       }}
-      px="4"
-      py="1.5rem"
+      px={["0", "0", "4"]}
+      pt="1.5rem"
+      pb="5rem"
       gap="1rem"
       flexWrap="wrap"
     >

@@ -41,7 +41,7 @@ export const VideoThumbnail = ({
     >
       <ThumbnailPhoto thumbnailUrl={thumbnailUrl} alt={title} />
 
-      <HStack spacing="3">
+      <HStack spacing="3" position="relative">
         <Avatar
           w="2.25rem"
           h="2.25rem"
@@ -66,7 +66,7 @@ export const VideoThumbnail = ({
           top: "11.3rem",
           right: 0,
           margin: 0,
-          opacity: "0",
+          opacity: { base: "1", lg: "0" },
           _focus: {
             opacity: "1",
           },

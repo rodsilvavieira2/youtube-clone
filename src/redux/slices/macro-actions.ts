@@ -2,12 +2,12 @@ import { RootState } from "@redux/store";
 import { createSlice } from "@reduxjs/toolkit";
 
 type InitialState = {
-  isDeskTopSidebarOpen: boolean;
+  isDeskTopSidebarExpanded: boolean;
   isMobileSidebarOpen: boolean;
 };
 
 const initialState: InitialState = {
-  isDeskTopSidebarOpen: true,
+  isDeskTopSidebarExpanded: true,
   isMobileSidebarOpen: false,
 };
 
@@ -16,7 +16,7 @@ export const macroActions = createSlice({
   name: "macroActions",
   reducers: {
     toggleIsDeskTopSidebarOpen: (state) => {
-      state.isDeskTopSidebarOpen = !state.isDeskTopSidebarOpen;
+      state.isDeskTopSidebarExpanded = !state.isDeskTopSidebarExpanded;
     },
     toggleMobileSidebarOpen: (state) => {
       state.isMobileSidebarOpen = !state.isMobileSidebarOpen;
@@ -27,8 +27,8 @@ export const macroActions = createSlice({
 export const { toggleIsDeskTopSidebarOpen, toggleMobileSidebarOpen } =
   macroActions.actions;
 
-export const selectIsDeskTopSidebarOpen = (state: RootState) =>
-  state.macroActions.isDeskTopSidebarOpen;
+export const selectIsDeskTopSidebarExpanded = (state: RootState) =>
+  state.macroActions.isDeskTopSidebarExpanded;
 
 export const selectIsMobileSidebarOpen = (state: RootState) =>
   state.macroActions.isMobileSidebarOpen;

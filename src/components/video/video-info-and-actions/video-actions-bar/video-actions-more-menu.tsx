@@ -1,9 +1,21 @@
 import { StyledMenuItem } from "components/styled-menu-item";
 
-import { IconButton, Menu, MenuButton, MenuList } from "@chakra-ui/react";
+import {
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuButtonProps,
+  MenuList,
+} from "@chakra-ui/react";
 import { YoutubeFlag, YoutubeHorizontalMore, YoutubeTransition } from "@icons";
 
-export const VideoActionsMoreMenu = () => {
+type VideoActionsMoreMenuProps = {
+  menuButtonProps?: MenuButtonProps;
+};
+
+export const VideoActionsMoreMenu = ({
+  menuButtonProps,
+}: VideoActionsMoreMenuProps) => {
   return (
     <Menu>
       <MenuButton
@@ -14,6 +26,7 @@ export const VideoActionsMoreMenu = () => {
         variant="mutedIconButton"
         size="sm"
         isRound
+        {...menuButtonProps}
       />
 
       <MenuList>

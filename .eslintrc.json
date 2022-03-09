@@ -25,6 +25,7 @@
         "eslint-plugin-import-helpers"
     ],
     "rules": {
+        "react/jsx-no-bind": "off",
         "no-underscore-dangle":"off",
         "react/require-default-props": "off",
         "no-param-reassign": "off",
@@ -54,16 +55,7 @@
                 }
             }
         ],
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "**/*.test.ts",
-                    "**/*.spec.ts",
-                    "**/mocks/**"
-                ]
-            }
-        ]
+        "import/no-extraneous-dependencies": "off"
     }
    
 }

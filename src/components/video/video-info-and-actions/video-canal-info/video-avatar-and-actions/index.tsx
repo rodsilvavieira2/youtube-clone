@@ -5,7 +5,7 @@ import { Subscription } from "./subscription";
 
 export const VideoAvatarAndActions = () => {
   return (
-    <Flex alignItems="center" justifyContent="space-between">
+    <Flex alignItems="center" justifyContent="space-between" px="0.5rem">
       <AvatarInfo />
 
       <Subscription />

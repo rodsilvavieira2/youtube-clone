@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Avatar, Box, HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import {
@@ -23,6 +23,8 @@ export const RelatedVideoThumbnail = ({
   return (
     <HStack
       position="relative"
+      alignItems="flex-start"
+      flexWrap="wrap"
       css={{
         ".thumbnailMenu": {
           visibility: "hidden",
@@ -34,15 +36,29 @@ export const RelatedVideoThumbnail = ({
         },
       }}
     >
-      <Box>
-        <VideoPreview to="/" alt={title} thumbnailUrl={thumbnailUrl} />
+      <VideoPreview
+        styleProps={{
+          w: { base: "100%", lg: "10.5rem" },
+          h: { base: "10rem", lg: "5.875rem" },
+        }}
+        to="/"
+        alt={title}
+        thumbnailUrl={thumbnailUrl}
+      />
 
-        <VideoInfoTitle>{title}</VideoInfoTitle>
+      <HStack spacing={2} position="relative">
+        <Avatar size="sm" />
 
-        <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
+        <Box w={{ base: "100%" }} p="0.5rem" pl="0">
+          <VideoInfoTitle fontWeight="500">{title}</VideoInfoTitle>
 
-        <VideoInfoViewsAndTimeFromNow postedAt={postedAt} views={views} />
-      </Box>
+          <HStack>
+            <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
+
+            <VideoInfoViewsAndTimeFromNow views={views} />
+          </HStack>
+        </Box>
+      </HStack>
     </HStack>
   );
 };

@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 import { Box, Flex } from "@chakra-ui/react";
 
 import { AccountActions } from "./account-actions";
 import { Brand } from "./brand";
+import { MobileSearchInput } from "./mobile-search-input";
 import { SearchInput } from "./search-input";
 
 type HeaderProps = {
@@ -9,12 +12,14 @@ type HeaderProps = {
 };
 
 export const Header = ({ onToggleSidebar }: HeaderProps) => {
+  const [shouldShowMobileInput, setShouldShowMobileInput] = useState(false);
+
   return (
     <Box
       w="100%"
       bg="primary"
       color="text.primary"
-      px="4"
+      px={["2", "2", "4"]}
       position="sticky"
       zIndex="banner"
       top={0}
@@ -24,9 +29,19 @@ export const Header = ({ onToggleSidebar }: HeaderProps) => {
       <Flex h="14" alignItems="center" justifyContent="space-between">
         <Brand onToggleSidebar={onToggleSidebar} />
 
-        <SearchInput />
+        <SearchInput
+          containerProps={{
+            display: { base: "none", lg: "flex" },
+          }}
+        />
 
-        <AccountActions />
+        <AccountActions
+          onOpenMobileSearch={() => setShouldShowMobileInput(true)}
+        />
+
+        {shouldShowMobileInput && (
+          <MobileSearchInput onClose={() => setShouldShowMobileInput(false)} />
+        )}
       </Flex>
     </Box>
   );

@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
 
 import { Box, Flex } from "@chakra-ui/react";
-import { DesktopSidebarContainer, MobileSidebarContainer } from "@containers";
+import { CompactMobileSidebar } from "@components";
+import { DesktopSidebarContainer } from "@containers";
 
 export const PrimaryPageLayout = () => {
   return (
     <Flex h="calc(100vh - 3.5rem)">
       <DesktopSidebarContainer />
 
-      <MobileSidebarContainer />
+      <CompactMobileSidebar />
 
       <Box flex={1}>
         <Outlet />

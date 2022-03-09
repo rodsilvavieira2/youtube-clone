@@ -1,18 +1,20 @@
 import { IconType } from "react-icons";
 import { Link } from "react-router-dom";
 
-import { Icon, Stack, Text } from "@chakra-ui/react";
+import { Icon, Stack, StackProps, Text } from "@chakra-ui/react";
 
 type CompactSidebarItemProps = {
   icon: IconType;
   text: string;
   to: string;
+  containerProps?: StackProps;
 };
 
 export const CompactSidebarItem = ({
   icon,
   text,
   to,
+  containerProps,
 }: CompactSidebarItemProps) => {
   return (
     <Stack
@@ -21,7 +23,7 @@ export const CompactSidebarItem = ({
       to={to}
       justifyContent="center"
       alignItems="center"
-      padding="16px 0 14px"
+      padding="1rem 0 0.875rem"
       outline="none"
       _hover={{
         bg: "button.bg",
@@ -29,6 +31,7 @@ export const CompactSidebarItem = ({
       _focus={{
         bg: "button.bg",
       }}
+      {...containerProps}
     >
       <Icon as={icon} flexShrink={0} fontSize="1.5rem" />
 

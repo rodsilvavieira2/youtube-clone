@@ -29,8 +29,8 @@ export const Comment = ({ comment }: CommentProps) => {
         color="text.primary"
         overflow="hidden"
         css={{
-          "-webkit-box-orient": "vertical",
-          "-webkit-line-clamp": shouldShowMore ? "none" : "4",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: shouldShowMore ? "none" : "4",
         }}
         ref={commentRef}
       >

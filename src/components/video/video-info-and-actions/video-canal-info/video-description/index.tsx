@@ -6,7 +6,7 @@ import { ShowLessOrMoreButton } from "./show-less-or-more";
 
 export const VideoDescription = () => {
   return (
-    <Box pl="14">
+    <Box pl="14" display={{ base: "none", lg: "none" }}>
       <Box fontSize="0.875rem">
         <Text>{faker.lorem.words(5)}</Text>
 

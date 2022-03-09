@@ -48,7 +48,7 @@ export const guideConfig = [
   {
     id: v4(),
     text: "Seus videos",
-    to: "/my-videos",
+    to: "https://studio.youtube.com/channel/UCPUC1MTWBXFN0FNVQcbxgUg/videos",
     icon: YoutubeMyVideo,
   },
   {
@@ -60,7 +60,7 @@ export const guideConfig = [
   {
     id: v4(),
     text: "Videos marcados como gostei",
-    to: "/liked-videos",
+    to: "/feed/liked-videos",
     icon: YoutubeLike,
   },
 ];

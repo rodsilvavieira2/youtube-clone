@@ -1,11 +1,10 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
-import { BasicVideoData } from "@types";
 import { dateFromNow, viewsTransform } from "@util";
 
-type VideoInfoViewsAndTimeFromNowProps = Pick<
-  BasicVideoData,
-  "views" | "postedAt"
->;
+type VideoInfoViewsAndTimeFromNowProps = {
+  views: number;
+  postedAt?: Date | string;
+};
 
 export const VideoInfoViewsAndTimeFromNow = ({
   views,
@@ -22,11 +21,11 @@ export const VideoInfoViewsAndTimeFromNow = ({
         {viewsTransform(views)}
       </Text>
 
-      <Box as="span" h="5px" w="5px" bg="text.secondary" borderRadius="full" />
-
-      <Text fontSize="inherit" as="time">
-        {dateFromNow(postedAt)}
-      </Text>
+      {postedAt && (
+        <Text fontSize="inherit" as="time">
+          {dateFromNow(postedAt)}
+        </Text>
+      )}
     </HStack>
   );
 };
