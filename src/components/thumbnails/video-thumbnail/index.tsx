@@ -1,3 +1,4 @@
+import { forwardRef, ForwardRefRenderFunction, memo } from "react";
 import { Link } from "react-router-dom";
 
 import { Avatar, Box, Flex, HStack, Stack } from "@chakra-ui/react";
@@ -19,14 +20,10 @@ type VideoThumbnailProps = {
   postedAt: Date;
 };
 
-export const VideoThumbnail = ({
-  avatarUrl,
-  canalName,
-  postedAt,
-  thumbnailUrl,
-  title,
-  views,
-}: VideoThumbnailProps) => {
+export const Base: ForwardRefRenderFunction<
+  HTMLDivElement & HTMLAnchorElement,
+  VideoThumbnailProps
+> = ({ avatarUrl, canalName, postedAt, thumbnailUrl, title, views }, ref) => {
   return (
     <Stack
       as={Link}
@@ -37,10 +34,22 @@ export const VideoThumbnail = ({
           opacity: 1,
         },
       }}
+      ref={ref}
     >
-      <ThumbnailPhoto thumbnailUrl={thumbnailUrl} alt={title} />
-
-      <HStack spacing="3" alignItems="normal" position="relative">
+      <ThumbnailPhoto
+        containerStyles={{
+          h: "8.9375rem",
+          maxW: "100%",
+        }}
+        thumbnailUrl={thumbnailUrl}
+        alt={title}
+      />
+      <HStack
+        spacing="3"
+        alignItems="normal"
+        position="relative"
+        px={{ base: "3", lg: 0 }}
+      >
         <HStack>
           <Avatar
             w="2.25rem"
@@ -74,3 +83,5 @@ export const VideoThumbnail = ({
     </Stack>
   );
 };
+
+export const VideoThumbnail = memo(forwardRef(Base));

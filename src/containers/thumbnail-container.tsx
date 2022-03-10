@@ -1,27 +1,45 @@
-import { useEffect, useState } from "react";
-import { v4 } from "uuid";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useMemo, useState } from "react";
 
 import { Flex } from "@chakra-ui/react";
 import { ThumbnailSkeleton, VideoThumbnail } from "@components";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import faker from "@faker-js/faker";
-
-const thumbnails = Array.from({ length: 12 }, () => ({
-  id: v4(),
-  thumbnailUrl: faker.image.city(),
-  title: faker.lorem.sentences(10),
-  views: faker.datatype.number(),
-  canalName: faker.lorem.words(25),
-  postedAt: faker.date.past(),
-  avatarUrl: faker.internet.avatar(),
-}));
+import { useObserver } from "@hooks";
+import { selectAllVideos, useGetAllVideosQuery } from "@redux/api";
+import { BasicVideoData } from "@types";
 
 export const ThumbnailContainer = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentVideos, setCurrentVideos] = useState<BasicVideoData[]>([]);
+
+  const { videos, isLoading, isFetching } = useGetAllVideosQuery(
+    { page: currentPage },
+    {
+      selectFromResult: ({
+        data = { entities: [], ids: [] } as any,
+        ...rest
+      }) => {
+        return {
+          videos: selectAllVideos(data),
+          ...rest,
+        };
+      },
+    }
+  );
+
+  const [lastVideoRef] = useObserver({
+    onVisible: () => {
+      if (!isFetching) setCurrentPage((prev) => prev + 1);
+    },
+  });
+
+  const videoSkeletons = useMemo(
+    () => Array.from({ length: 8 }, (_, k) => <ThumbnailSkeleton key={k} />),
+    []
+  );
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 3000);
-  });
+    if (videos.length) setCurrentVideos((prev) => [...prev, ...videos]);
+  }, [videos]);
 
   return (
     <Flex
@@ -36,18 +54,23 @@ export const ThumbnailContainer = () => {
       pb="5rem"
       gap="1rem"
       flexWrap="wrap"
+      w="100%"
+      overflow="hidden"
     >
       {isLoading ? (
-        <>
-          {Array.from({ length: 9 }, (_, k) => (
-            <ThumbnailSkeleton key={k} />
-          ))}
-        </>
+        videoSkeletons
       ) : (
         <>
-          {thumbnails.map((item) => (
-            <VideoThumbnail key={item.id} {...item} />
-          ))}
+          {currentVideos.map((item, i) => {
+            if (i + 1 === currentVideos.length) {
+              return (
+                <VideoThumbnail ref={lastVideoRef} key={item.id} {...item} />
+              );
+            }
+
+            return <VideoThumbnail key={item.id} {...item} />;
+          })}
+          {isFetching && !isLoading && videoSkeletons}
         </>
       )}
     </Flex>

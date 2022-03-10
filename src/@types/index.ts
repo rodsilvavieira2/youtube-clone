@@ -1,3 +1,5 @@
+type VideoCategory = "movie" | "music" | "game" | "sport" | "news" | "learn";
+
 export type BasicVideoData = {
   id: string;
   title: string;
@@ -6,5 +8,6 @@ export type BasicVideoData = {
   views: number;
   thumbnailUrl: string;
   avatarUrl: string;
+  category: VideoCategory;
   postedAt: Date;
 };

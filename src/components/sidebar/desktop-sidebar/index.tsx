@@ -16,7 +16,7 @@ export const DesktopSidebar = ({ isExpanded }: SidebarProps) => {
         position="fixed"
         top="3.5rem"
         bg="primary"
-        flexShrink={0}
+        w={isExpanded ? "15rem" : "4.5rem"}
         left={0}
         bottom={0}
         zIndex="banner"

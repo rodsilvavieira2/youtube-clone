@@ -24,7 +24,8 @@
       "@pages": ["pages"],
       "@containers": ["containers"],
       "@layouts": ["layouts"],
-      "@util": ["util"]
+      "@util": ["util"],
+      "@hooks": ["hooks"]
     }
   },
   "include": ["src"],
