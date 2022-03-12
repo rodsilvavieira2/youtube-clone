@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { Stack, Flex, Button } from "@chakra-ui/react";
 import {
   RelatedVideoThumbnail,
-  TagBar,
+  TagsBar,
   VideoComments,
   MobileVideoComments,
   VideoInfoAndActions,
@@ -62,7 +62,7 @@ export default function Video() {
         p="1.5rem"
         pl="0"
       >
-        <TagBar />
+        <TagsBar />
 
         <Stack>{relatedVideosRendered}</Stack>
       </Stack>

@@ -11,15 +11,12 @@ const initialState = videosAdapter.getInitialState();
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3004" }),
-  tagTypes: ["videos"],
+  tagTypes: ["videos", "explore"],
   endpoints: (builder) => ({
     getAllVideos: builder.query<EntityState<BasicVideoData>, { page: number }>({
       query: ({ page }) => `/videos?_page=${page}&_limit=20`,
       transformResponse: (data: BasicVideoData[]) => {
         return videosAdapter.setAll(initialState, data);
-      },
-      onCacheEntryAdded: () => {
-        console.log("added");
       },
       providesTags: ["videos"],
     }),

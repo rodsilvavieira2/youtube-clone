@@ -21,19 +21,13 @@ module.exports = () => {
         }],
         videos: [],
         comments: [],
-        "related-videos": []
+        "related-videos": [],
+        explore: [],
+        tags: []
     };
 
     Array.from({ length: 500 }, () => {
         const videoId = faker.datatype.uuid()
-        const userId = faker.datatype.uuid()
-
-        data.users.push({
-            id: userId,
-            userName: faker.name.findName(),
-            email: faker.internet.email(),
-            avatarUrl: faker.internet.avatar()
-        })
 
         data.videos.push({
             id: videoId,
@@ -41,14 +35,25 @@ module.exports = () => {
             title: faker.lorem.sentences(10),
             views: faker.datatype.number(),
             canalName: faker.lorem.words(25),
-            category: categories[faker.datatype.number({min: 0, max: 5})],
+            category: categories[faker.datatype.number({ min: 0, max: 5 })],
+            postedAt: faker.date.past(),
+            avatarUrl: faker.internet.avatar(),
+        })
+
+        data.explore.push({
+            id: videoId,
+            thumbnailUrl: faker.image.city(),
+            title: faker.lorem.sentences(10),
+            views: faker.datatype.number(),
+            canalName: faker.lorem.words(25),
+            category: categories[faker.datatype.number({ min: 0, max: 5 })],
+            description: faker.lorem.paragraphs(4),
             postedAt: faker.date.past(),
             avatarUrl: faker.internet.avatar(),
         })
 
         Array.from({ length: 50 }, () => {
             data.comments.push({
-                userId,
                 videoId,
                 likes: faker.datatype.number(),
                 isDisliked: faker.datatype.boolean(),
@@ -56,6 +61,14 @@ module.exports = () => {
                 commentedAt: faker.date.past(),
             })
         })
+
+        Array.from({ length: 15 }, () => {
+            data.tags.push({
+                id: faker.datatype.uuid(),
+                tagName: faker.lorem.words(3),
+                onClick,
+            })
+        });
     })
 
     return data

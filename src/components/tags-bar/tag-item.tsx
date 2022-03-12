@@ -18,6 +18,9 @@ export const TagItem = ({ onClick, tagName }: TagItemProps) => {
       borderRadius="full"
       alignItems="center"
       flexShrink={0}
+      css={{
+        counterIncrement: "item",
+      }}
     >
       <Text
         whiteSpace="nowrap"

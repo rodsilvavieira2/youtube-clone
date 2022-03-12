@@ -1,5 +1,5 @@
 export * from "./header";
-export * from "./tag-bar";
+export * from "./tags-bar";
 export * from "./thumbnails";
 export * from "./skeletons";
 export * from "./sidebar";

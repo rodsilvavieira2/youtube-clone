@@ -1,5 +1,10 @@
-import { TagBarContainer, ThumbnailContainer } from "@containers";
+import { TagsBarContainer, ThumbnailContainer } from "@containers";
 
 export default function Home() {
-  return <ThumbnailContainer />;
+  return (
+    <>
+      <TagsBarContainer />
+      <ThumbnailContainer />;
+    </>
+  );
 }

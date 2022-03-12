@@ -1,21 +1,8 @@
 import { v4 } from "uuid";
 
 import { Flex, Heading, Stack } from "@chakra-ui/react";
-import { ExploreCard, ExploreThumbnail } from "@components";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import faker from "@faker-js/faker";
-import { BasicVideoData } from "@types";
-
-const videos: BasicVideoData[] = Array.from({ length: 50 }, () => ({
-  id: faker.datatype.uuid(),
-  avatarUrl: faker.internet.avatar(),
-  canalName: faker.name.findName(),
-  postedAt: faker.date.past(),
-  thumbnailUrl: faker.image.abstract(),
-  title: faker.lorem.words(50),
-  views: faker.datatype.number(),
-  description: faker.lorem.words(50),
-}));
+import { ExploreCard } from "@components";
+import { ExploreContainer } from "@containers";
 
 const category = [
   {
@@ -81,11 +68,7 @@ export default function Explore() {
         Vídeos em alta
       </Heading>
 
-      <Stack spacing={4}>
-        {videos.map((item) => (
-          <ExploreThumbnail key={item.id} {...item} />
-        ))}
-      </Stack>
+      <ExploreContainer />
     </Stack>
   );
 }
