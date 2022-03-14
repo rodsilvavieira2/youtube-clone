@@ -17,6 +17,7 @@ export const Header = ({ onToggleSidebar }: HeaderProps) => {
   return (
     <Box
       w="100%"
+      as="header"
       bg="primary"
       color="text.primary"
       px={["2", "2", "4"]}

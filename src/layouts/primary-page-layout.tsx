@@ -11,7 +11,7 @@ export const PrimaryPageLayout = () => {
 
       <CompactMobileSidebar />
 
-      <Box flex={1}>
+      <Box as="main" w="100%">
         <Outlet />
       </Box>
     </Flex>

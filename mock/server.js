@@ -22,13 +22,32 @@ module.exports = () => {
         comments: [],
         explore: [],
         tags: [],
-        library: []
+        library: [],
+        history: []
     };
 
     Array.from({ length: 500 }, () => {
         const videoId = faker.datatype.uuid()
 
         data.library.push({
+            id: videoId,
+            thumbnailUrl: faker.image.city(),
+            title: faker.lorem.paragraphs(20),
+            views: faker.datatype.number(),
+            canalName: faker.lorem.words(25),
+            category: categories[faker.datatype.number({ min: 0, max: 5 })],
+            description: faker.lorem.paragraphs(10),
+            postedAt: faker.date.past(),
+            avatarUrl: faker.internet.avatar(),
+            tags: Array.from({
+                length: 5
+            }, () => ({
+                id: faker.datatype.uuid(),
+                tagName: faker.lorem.words(3)
+            }))
+        })
+
+        data.history.push({
             id: videoId,
             thumbnailUrl: faker.image.city(),
             title: faker.lorem.paragraphs(20),

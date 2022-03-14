@@ -1,5 +1,6 @@
-import { Box, HStack, IconButton } from "@chakra-ui/react";
-import { YoutubeClose } from "@icons";
+import { forwardRef, ForwardRefRenderFunction } from "react";
+
+import { Box, HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import {
@@ -9,16 +10,17 @@ import {
   VideoInfoViewsAndTimeFromNow,
   VideoPreview,
 } from "../shared";
+import { RemoveButton } from "./remove-button";
 
-type HistoryThumbnailProps = Omit<BasicVideoData, "id" | "avatarUrl">;
+type HistoryThumbnailProps = Pick<
+  BasicVideoData,
+  "canalName" | "thumbnailUrl" | "title" | "views"
+>;
 
-export const HistoryThumbnail = ({
-  canalName,
-  postedAt,
-  thumbnailUrl,
-  title,
-  views,
-}: HistoryThumbnailProps) => {
+const Base: ForwardRefRenderFunction<HTMLDivElement, HistoryThumbnailProps> = (
+  { canalName, thumbnailUrl, title, views },
+  ref
+) => {
   return (
     <HStack
       alignItems="flex-start"
@@ -28,53 +30,45 @@ export const HistoryThumbnail = ({
           opacity: 1,
         },
       }}
+      ref={ref}
     >
       <VideoPreview
         styleProps={{
-          w: "15.375rem",
-          h: "8.625rem",
+          w: { base: "9rem", lg: "15.375rem" },
+          h: { base: "6rem", lg: "8.625rem" },
         }}
         thumbnailUrl={thumbnailUrl}
         alt={title}
         to="/"
       />
+      <HStack alignItems="normal" justifyContent="space-between">
+        <Box>
+          <VideoInfoTitle>{title}</VideoInfoTitle>
 
-      <Box>
-        <VideoInfoTitle>{title}</VideoInfoTitle>
+          <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
 
-        <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
+          <VideoInfoViewsAndTimeFromNow views={views} />
+        </Box>
 
-        <VideoInfoViewsAndTimeFromNow postedAt={postedAt} views={views} />
-      </Box>
+        <HStack alignItems="normal">
+          <RemoveButton display={{ base: "none", md: "inline-flex" }} />
 
-      <IconButton
-        aria-label="remover do historico de exibição"
-        icon={<YoutubeClose />}
-        variant="mutedIconButton"
-        position="absolute"
-        top={0}
-        isRound
-        right="3.5rem"
-        className="history-button-action"
-        opacity={0}
-        _focus={{
-          opacity: 1,
-          bg: "button.focus",
-        }}
-      />
-
-      <ThumbnailBasicMenu
-        containerProps={{
-          className: "history-button-action",
-          position: "absolute",
-          top: "0",
-          right: "0.3rem",
-          opacity: 0,
-          _focusWithin: {
-            opacity: 1,
-          },
-        }}
-      />
+          <ThumbnailBasicMenu
+            containerProps={{
+              className: "history-button-action",
+              opacity: {
+                base: 1,
+                lg: 0,
+              },
+              _focusWithin: {
+                opacity: 1,
+              },
+            }}
+          />
+        </HStack>
+      </HStack>
     </HStack>
   );
 };
+
+export const HistoryThumbnail = forwardRef(Base);
