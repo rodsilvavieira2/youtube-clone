@@ -1,5 +1,3 @@
 export const MobileVideoDescription = () => {
-    return (
-        
-    )
-}
+  return <h1>mobile</h1>;
+};

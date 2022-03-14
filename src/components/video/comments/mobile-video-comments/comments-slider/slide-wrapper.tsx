@@ -10,15 +10,15 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { YoutubeClose } from "@icons";
+import { VideoComment } from "@types";
 
-import { CommentItemProps } from "../../shared";
 import { CommentInput } from "./comment-input";
 import { CommentsWrapper } from "./comments-wrapper";
 
 type SliderWrapperProps = {
   onClose: () => void;
   isLoading: boolean;
-  comments: CommentItemProps[];
+  comments: VideoComment[];
 };
 
 export const SliderWrapper = ({
@@ -64,6 +64,7 @@ export const SliderWrapper = ({
         dragControls={dragControls}
         onDrag={onDrag}
         onDragEnd={onDragEnd}
+        dragConstraints={{ top: 0 }}
         exit={{
           y: "100%",
         }}

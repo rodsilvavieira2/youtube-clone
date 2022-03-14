@@ -10,15 +10,19 @@ export const VideoInfoCanalName = ({
 }: VideoInfoCanalNameProps) => {
   return (
     <Text
+      display="-webkit-box"
       as="small"
       fontSize="0.75rem"
       color="text.secondary"
       maxW="29ch"
       textAlign="left"
-      whiteSpace="nowrap"
       overflow="hidden"
       textOverflow="ellipsis"
       title={children}
+      css={{
+        WebkitBoxOrient: "vertical",
+        WebkitLineClamp: "1",
+      }}
       {...props}
     >
       {children}

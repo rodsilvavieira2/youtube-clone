@@ -61,7 +61,7 @@ export const App = () => {
             <Route path="feed/liked-videos" element={<LikedVideos />} />
           </Route>
 
-          <Route path="/:video" element={<Video />} />
+          <Route path="/video/:id" element={<Video />} />
         </Routes>
       </Suspense>
     </Box>

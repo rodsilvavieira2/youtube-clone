@@ -1,11 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { Stack } from "@chakra-ui/react";
-import {
-  ExploreThumbnail,
-  HorizontalThumbnail,
-  ThumbnailSkeleton,
-} from "@components";
+import { ExploreThumbnail, HorizontalThumbnail } from "@components";
 import { useObserver } from "@hooks";
 import {
   selectAllExploreVideos,

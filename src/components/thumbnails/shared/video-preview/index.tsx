@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 import { Link } from "react-router-dom";
 
-import { Box, BoxProps, Image } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 
+import { ThumbnailPhoto } from "../thumbnail-photo";
 import { PreviewActions } from "./preview-actions";
 
 type RelatedVideoPreviewProps = {
@@ -40,7 +40,13 @@ export const VideoPreview = ({
       }}
       {...styleProps}
     >
-      <Image src={thumbnailUrl} alt={alt} w="100%" h="100%" objectFit="fill" />
+      <ThumbnailPhoto
+        thumbnailUrl={thumbnailUrl}
+        alt={alt}
+        containerProps={{
+          height: "100%",
+        }}
+      />
 
       <PreviewActions
         onAddToQueue={onClick}

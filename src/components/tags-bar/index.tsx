@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 
 import { Flex, HStack, StackProps } from "@chakra-ui/react";
 import faker from "@faker-js/faker";
+import { Tag } from "@types";
 
 import { TagItem } from "./tag-item";
 
@@ -17,7 +18,11 @@ const tabItems = Array.from({ length: 15 }, () => ({
 
 const MotionStack = motion<StackProps>(HStack);
 
-export const TagsBar = () => {
+type TagsBarProps = {
+  tags: Tag[];
+};
+
+export const TagsBar = ({ tags }: TagsBarProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const tagsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +32,7 @@ export const TagsBar = () => {
   useEffect(() => {
     setContainerWidth(containerRef.current?.offsetWidth ?? 0);
     setTagsContainerWidth(tagsContainerRef.current?.offsetWidth ?? 0);
-  }, []);
+  }, [tags]);
 
   return (
     <Flex
@@ -55,7 +60,7 @@ export const TagsBar = () => {
         }}
         ref={tagsContainerRef}
       >
-        {tabItems.map((item) => (
+        {tags.map((item) => (
           <TagItem key={item.id} {...item} />
         ))}
       </MotionStack>

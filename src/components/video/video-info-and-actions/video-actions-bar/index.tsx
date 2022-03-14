@@ -1,11 +1,26 @@
-import { HStack, Text } from "@chakra-ui/react";
-import { YoutubeClip, YoutubeDislike, YoutubeLike, YoutubeShare } from "@icons";
+import { HStack, Skeleton, Text } from "@chakra-ui/react";
+import {
+  YoutubeClip,
+  YoutubeDislike,
+  YoutubeFlag,
+  YoutubeLike,
+  YoutubeSaveList,
+  YoutubeShare,
+} from "@icons";
+import { BasicVideoData } from "@types";
+import { viewsTransform } from "@util";
 
 import { ActionButton } from "./action-button";
 import { VideoActionsMoreMenu } from "./video-actions-more-menu";
 
-export const VideoActionsBar = () => {
-  return (
+type VideoActionsBarProps = Pick<BasicVideoData, "views"> & {
+  isLoading?: boolean;
+};
+
+export const VideoActionsBar = ({ views, isLoading }: VideoActionsBarProps) => {
+  return isLoading ? (
+    <Skeleton w="100%" h="1.5rem" />
+  ) : (
     <HStack alignItems="center" justifyContent="space-between">
       <Text
         display={{ base: "none", lg: "inline-flex" }}
@@ -13,7 +28,7 @@ export const VideoActionsBar = () => {
         color="text.secondary"
         fontSize="0.875rem"
       >
-        4.500 visualizações
+        {viewsTransform(views)}
       </Text>
 
       <ActionButton
@@ -57,12 +72,18 @@ export const VideoActionsBar = () => {
       </ActionButton>
 
       <ActionButton
-        containerProps={{
-          display: { base: "none", lg: "inline-flex" },
-        }}
         buttonProps={{
           "aria-label": "salve o video em uma lista",
-          icon: <YoutubeClip />,
+          icon: <YoutubeSaveList />,
+        }}
+      >
+        salvar
+      </ActionButton>
+
+      <ActionButton
+        buttonProps={{
+          "aria-label": "deunciar video",
+          icon: <YoutubeFlag />,
         }}
       >
         salvar

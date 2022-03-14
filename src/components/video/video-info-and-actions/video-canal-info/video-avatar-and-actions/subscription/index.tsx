@@ -30,8 +30,8 @@ export const Subscription = () => {
         <Button
           onClick={onClick}
           textTransform="uppercase"
-          bg={["transparent", "error"]}
-          color={["error", "#ffff"]}
+          bg={["transparent", "transparent", "error"]}
+          color={["error", "error", "#ffff"]}
           borderRadius="2px"
           fontWeight="500"
           fontSize={{ base: "sm", lg: "0.875rem" }}

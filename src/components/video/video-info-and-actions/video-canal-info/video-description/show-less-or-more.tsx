@@ -2,18 +2,22 @@ import { useState } from "react";
 
 import { Button } from "@chakra-ui/react";
 
-export const ShowLessOrMoreButton = () => {
-  const [isShowingMore, setIsShowingMore] = useState(false);
+type ShowLessOrMoreButtonProps = {
+  onToggle: () => void;
+  isShowingMore: boolean;
+};
 
-  const onClick = () => setIsShowingMore((prev) => !prev);
-
+export const ShowLessOrMoreButton = ({
+  onToggle,
+  isShowingMore,
+}: ShowLessOrMoreButtonProps) => {
   return (
     <Button
       fontSize="0.75rem"
       variant="unstyled"
       textTransform="uppercase"
       color="text.secondary"
-      onClick={onClick}
+      onClick={onToggle}
     >
       {isShowingMore ? "monstar menos" : "monstar mais"}
     </Button>

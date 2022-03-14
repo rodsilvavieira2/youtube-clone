@@ -1,26 +1,20 @@
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { v4 } from "uuid";
 
-import { Box, Button } from "@chakra-ui/react";
-import faker from "@faker-js/faker";
+import { Box, BoxProps, Button } from "@chakra-ui/react";
+import { VideoComment } from "@types";
 
 import { CommentsSlider } from "./comments-slider";
 
-const comments = Array.from({ length: 50 }, () => ({
-  id: v4(),
-  userName: faker.name.findName(),
-  likes: faker.datatype.number(),
-  isDisliked: faker.datatype.boolean(),
-  comment: faker.lorem.paragraph(15),
-  avatarUrl: faker.internet.avatar(),
-  commentedAt: faker.date.past(),
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onIncrementLike: () => {},
-  responses: [],
-}));
+type MobileVideoCommentsProps = {
+  comments: VideoComment[];
+  containerProps?: BoxProps;
+};
 
-export const MobileVideoComments = () => {
+export const MobileVideoComments = ({
+  comments,
+  containerProps,
+}: MobileVideoCommentsProps) => {
   const [isCommentsSlideVisible, setIsCommentsSlideVisible] = useState(false);
   const [rootContainer, setRootContainer] = useState<
     Element | null | undefined
@@ -38,7 +32,11 @@ export const MobileVideoComments = () => {
   };
 
   return (
-    <Box borderBottom="1px solid" borderColor="border.secondary">
+    <Box
+      borderBottom="1px solid"
+      borderColor="border.secondary"
+      {...containerProps}
+    >
       <Button
         isFullWidth
         variant="ghost"

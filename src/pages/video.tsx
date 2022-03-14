@@ -1,71 +1,102 @@
-import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 
-import { Stack, Flex, Button } from "@chakra-ui/react";
+import { Box, Flex, Stack, useBreakpointValue } from "@chakra-ui/react";
 import {
-  RelatedVideoThumbnail,
-  TagsBar,
-  VideoComments,
   MobileVideoComments,
+  VideoComments,
+  VideoDisplay,
   VideoInfoAndActions,
+  VideoTags,
 } from "@components";
-import faker from "@faker-js/faker";
+import { RelatedVideosContainer } from "@containers";
+import { useObserver } from "@hooks";
+import { useGetVideoCommentsMutation, useGetVideoQuery } from "@redux/api";
 
-const relatedVideos = Array.from({ length: 50 }, () => ({
-  id: faker.datatype.uuid(),
-  title: faker.lorem.words(3),
-  views: faker.datatype.number(),
-  canalName: faker.name.findName(),
-  avatarUrl: faker.internet.avatar(),
-  thumbnailUrl: faker.image.city(),
-  postedAt: faker.date.past(),
-}));
+type UrlParams = {
+  id: string;
+};
 
 export default function Video() {
-  const relatedVideosRendered = useMemo(() => {
-    return relatedVideos.map((item) => (
-      <RelatedVideoThumbnail key={item.id} {...item} />
-    ));
-  }, []);
+  const { id = "" } = useParams<UrlParams>();
+
+  const { data: videoData, isLoading: isLoadingVideoData } = useGetVideoQuery({
+    id,
+  });
+
+  const [getComments, { data: comments = [], isLoading: isLoadingComments }] =
+    useGetVideoCommentsMutation();
+
+  const {
+    title = "",
+    views = 0,
+    description = "",
+    canalName = "",
+    category = "game",
+  } = videoData || {};
+
+  const [renderCommentsRef] = useObserver({
+    onVisible: () => {
+      getComments({ videoId: id });
+    },
+    config: {
+      unobserveOnIntersect: true,
+    },
+  });
+
+  const isOnDesktopView = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
 
   return (
-    <Flex bg="bg" flexDir="column">
-      <Flex
-        alignItems="center"
-        justifyContent="center"
-        h={["30vh", "68vh"]}
-        border="1px solid"
-        borderColor="black"
-        borderStyle="dotted"
-        flexShrink={0}
-      >
-        Um video incrivel
-        <Button>click</Button>
-      </Flex>
-
-      <Stack spacing={0} w={{ base: "100%", lg: "65%", xl: "70%" }} pt={0}>
-        <VideoInfoAndActions />
-
-        <MobileVideoComments />
-
-        <Stack mt="0.3rem !important">{relatedVideosRendered}</Stack>
-
-        <VideoComments
-          containerProps={{
-            display: { base: "none", lg: "flex" },
-          }}
-        />
-      </Stack>
-
+    <Flex
+      w="100%"
+      p={{ base: 0, lg: "1.5rem" }}
+      css={{
+        "& > div": {
+          flex: "0 1 auto",
+        },
+      }}
+      flexWrap={{ base: "wrap", lg: "nowrap" }}
+    >
       <Stack
-        display={{ base: "none", lg: "flex" }}
-        w={{ base: "35%", xl: "30%" }}
-        p="1.5rem"
-        pl="0"
+        p={{ base: 0, lg: "1.5rem" }}
+        w={{ base: "100%", lg: "67%" }}
+        h="100%"
       >
-        <TagsBar />
+        <VideoDisplay />
 
-        <Stack>{relatedVideosRendered}</Stack>
+        <VideoInfoAndActions
+          isLoading={isLoadingVideoData}
+          title={title}
+          views={views}
+          description={description}
+          canalName={canalName}
+        />
+        <Box visibility="hidden" ref={renderCommentsRef} />
+
+        <MobileVideoComments
+          containerProps={{
+            mt: "0 !important",
+          }}
+          comments={comments}
+        />
+
+        {isOnDesktopView && (
+          <VideoComments isLoading={isLoadingComments} comments={comments} />
+        )}
       </Stack>
+
+      <Flex
+        p={{ base: 0, sm: "0.5rem", lg: "1.5rem" }}
+        w={{ base: "100%", lg: "33%" }}
+        h="100%"
+      >
+        <RelatedVideosContainer
+          isLoading={isLoadingVideoData}
+          category={category}
+        />
+      </Flex>
     </Flex>
   );
 }

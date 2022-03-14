@@ -6,7 +6,7 @@ export * from "./sidebar";
 export * from "./styled-menu-item";
 export * from "./library";
 export * from "./fall-back";
-export * from "./history";
+export * from "./my-play-list/history";
 export * from "./explore";
 export * from "./library";
 export * from "./video";

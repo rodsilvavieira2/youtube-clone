@@ -7,3 +7,4 @@ export * from "./video-info-canal-name";
 export * from "./video-info-views-and-time-from-now";
 export * from "./video-info-description";
 export * from "./video-thumbnail-interaction";
+export * from "./thumbnail-photo";

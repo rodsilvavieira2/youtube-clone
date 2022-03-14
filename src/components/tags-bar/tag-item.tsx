@@ -2,10 +2,9 @@ import { Flex, Text } from "@chakra-ui/react";
 
 export type TagItemProps = {
   tagName: string;
-  onClick: () => void;
 };
 
-export const TagItem = ({ onClick, tagName }: TagItemProps) => {
+export const TagItem = ({ tagName }: TagItemProps) => {
   return (
     <Flex
       role="tab"
@@ -14,7 +13,6 @@ export const TagItem = ({ onClick, tagName }: TagItemProps) => {
       bg="shape"
       px="3"
       py="2"
-      onClick={onClick}
       borderRadius="full"
       alignItems="center"
       flexShrink={0}

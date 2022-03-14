@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 import { Box } from "@chakra-ui/react";
+import { VideoComment } from "@types";
 
-import { CommentItemProps } from "../../shared";
 import { SliderWrapper } from "./slide-wrapper";
 
 type CommentsSliderProps = {
   onClose: () => void;
-  comments: CommentItemProps[];
+  comments: VideoComment[];
 };
 
 function toggleDisableScroll() {

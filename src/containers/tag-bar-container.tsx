@@ -2,10 +2,23 @@ import { useSelector } from "react-redux";
 
 import { Box } from "@chakra-ui/react";
 import { TagsBar } from "@components";
+import { selectAllTags, useGetAllTagsQuery } from "@redux/api/tags";
 import { selectIsDeskTopSidebarExpanded } from "@redux/slices";
 
 export const TagsBarContainer = () => {
   const isDeskTopSidebarExpanded = useSelector(selectIsDeskTopSidebarExpanded);
+
+  const { tags } = useGetAllTagsQuery(undefined, {
+    selectFromResult: ({
+      data = { entities: [], ids: [] } as any,
+      ...rest
+    }) => {
+      return {
+        tags: selectAllTags(data),
+        ...rest,
+      };
+    },
+  });
 
   return (
     <Box h="3.5rem" w="100%">
@@ -19,7 +32,7 @@ export const TagsBarContainer = () => {
             : "calc(100vw - 5.5rem)",
         }}
       >
-        <TagsBar />
+        <TagsBar tags={tags} />
       </Box>
     </Box>
   );

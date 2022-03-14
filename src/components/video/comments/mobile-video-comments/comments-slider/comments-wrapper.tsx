@@ -1,11 +1,12 @@
 import { memo } from "react";
 
 import { Stack } from "@chakra-ui/react";
+import { VideoComment } from "@types";
 
-import { CommentItemProps, VideoCommentItem } from "../../shared";
+import { VideoCommentItem } from "../../shared";
 
 type CommentsWrapperProps = {
-  comments: CommentItemProps[];
+  comments: VideoComment[];
 };
 
 const Base = ({ comments }: CommentsWrapperProps) => {

@@ -2,7 +2,9 @@ import { useCallback, useRef } from "react";
 
 export type UsePaginationParams = {
   onVisible: () => void;
-  config?: IntersectionObserverInit;
+  config?: IntersectionObserverInit & {
+    unobserveOnIntersect?: boolean;
+  };
 };
 export function useObserver({ onVisible, config }: UsePaginationParams) {
   const observer = useRef<IntersectionObserver>();
@@ -13,6 +15,10 @@ export function useObserver({ onVisible, config }: UsePaginationParams) {
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         onVisible();
+
+        if (config?.unobserveOnIntersect && node) {
+          observer.current?.unobserve(node);
+        }
       }
     }, config);
 

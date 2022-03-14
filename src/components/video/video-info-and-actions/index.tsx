@@ -1,29 +1,36 @@
-import { Heading, Stack } from "@chakra-ui/react";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import faker from "@faker-js/faker";
+import { Stack } from "@chakra-ui/react";
+import { BasicVideoData } from "@types";
 
 import { VideoActionsBar } from "./video-actions-bar";
 import { VideoCanalInfo } from "./video-canal-info";
+import { VideoTitle } from "./video-title";
 
-export const VideoInfoAndActions = () => {
+type VideoInfoAndActionsProps = Pick<
+  BasicVideoData,
+  "title" | "views" | "description" | "canalName"
+> & {
+  isLoading: boolean;
+};
+
+export const VideoInfoAndActions = ({
+  title,
+  views,
+  canalName,
+  description,
+  isLoading,
+}: VideoInfoAndActionsProps) => {
   return (
-    <Stack>
-      <Heading
-        mt="4"
-        color="text.primary"
-        w="100%"
-        overflow="hidden"
-        textOverflow="ellipsis"
-        fontWeight="400"
-        whiteSpace="nowrap"
-        fontSize="1.125rem"
-      >
-        {faker.lorem.words(10)}
-      </Heading>
+    <Stack px={{ base: "0.5rem", lg: 0 }}>
+      <VideoTitle isLoading={isLoading}>{title}</VideoTitle>
 
-      <VideoActionsBar />
+      <VideoActionsBar isLoading={isLoading} views={views} />
 
-      <VideoCanalInfo />
+      <VideoCanalInfo
+        canalName={canalName}
+        description={description}
+        subscriptionAmount={0}
+        isLoading={isLoading}
+      />
     </Stack>
   );
 };

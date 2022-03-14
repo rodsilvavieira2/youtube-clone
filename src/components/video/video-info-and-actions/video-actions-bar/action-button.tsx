@@ -18,7 +18,12 @@ export const ActionButton = ({
   children,
 }: ActionButtonProps) => {
   return (
-    <HStack spacing={["1"]} flexWrap="wrap" {...containerProps}>
+    <HStack
+      spacing={["1"]}
+      flexWrap="wrap"
+      flexDirection={{ base: "column", lg: "row" }}
+      {...containerProps}
+    >
       <IconButton
         flexShrink={0}
         aria-label="fazer um clipe do video"

@@ -2,32 +2,29 @@ import { forwardRef, ForwardRefRenderFunction, memo } from "react";
 import { Link } from "react-router-dom";
 
 import { Avatar, Box, Flex, HStack, Stack } from "@chakra-ui/react";
+import { BasicVideoData } from "@types";
 
 import {
   ThumbnailMenu,
   VideoInfoCanalName,
   VideoInfoTitle,
   VideoInfoViewsAndTimeFromNow,
+  ThumbnailPhoto,
 } from "../shared";
-import { ThumbnailPhoto } from "./thumbnail-photo";
 
-type VideoThumbnailProps = {
-  thumbnailUrl: string;
-  title: string;
-  views: number;
-  canalName: string;
-  avatarUrl: string;
-  postedAt: Date;
-};
+type VideoThumbnailProps = BasicVideoData;
 
 export const Base: ForwardRefRenderFunction<
   HTMLDivElement & HTMLAnchorElement,
   VideoThumbnailProps
-> = ({ avatarUrl, canalName, postedAt, thumbnailUrl, title, views }, ref) => {
+> = (
+  { avatarUrl, canalName, postedAt, thumbnailUrl, title, views, id },
+  ref
+) => {
   return (
     <Stack
       as={Link}
-      to="/:video"
+      to={`/video/${id}`}
       position="relative"
       _hover={{
         ".video-menu": {
@@ -37,7 +34,7 @@ export const Base: ForwardRefRenderFunction<
       ref={ref}
     >
       <ThumbnailPhoto
-        containerStyles={{
+        containerProps={{
           h: "8.9375rem",
           maxW: "100%",
         }}

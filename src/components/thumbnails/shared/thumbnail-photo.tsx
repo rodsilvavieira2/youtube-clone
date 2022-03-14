@@ -5,18 +5,18 @@ import { Box, BoxProps, Image, Skeleton } from "@chakra-ui/react";
 type ThumbnailPhotoProps = {
   thumbnailUrl: string;
   alt: string;
-  containerStyles?: BoxProps;
+  containerProps?: BoxProps;
 };
 
 export const ThumbnailPhoto = ({
   thumbnailUrl,
   alt,
-  containerStyles,
+  containerProps,
 }: ThumbnailPhotoProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Box {...containerStyles} position="relative">
+    <Box {...containerProps} position="relative">
       <Image
         w="100%"
         h="100%"

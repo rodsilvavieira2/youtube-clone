@@ -9,7 +9,6 @@ const categories = [
     "learn"
 ]
 
-
 module.exports = () => {
 
     const data = {
@@ -21,7 +20,6 @@ module.exports = () => {
         }],
         videos: [],
         comments: [],
-        "related-videos": [],
         explore: [],
         tags: []
     };
@@ -32,44 +30,52 @@ module.exports = () => {
         data.videos.push({
             id: videoId,
             thumbnailUrl: faker.image.city(),
-            title: faker.lorem.sentences(10),
+            title: faker.lorem.paragraphs(20),
             views: faker.datatype.number(),
             canalName: faker.lorem.words(25),
             category: categories[faker.datatype.number({ min: 0, max: 5 })],
+            description: faker.lorem.paragraphs(10),
             postedAt: faker.date.past(),
             avatarUrl: faker.internet.avatar(),
+            tags: Array.from({
+                length: 5
+            }, () => ({
+                id: faker.datatype.uuid(),
+                tagName: faker.lorem.words(3)
+            }))
         })
 
         data.explore.push({
-            id: videoId,
+            id: faker.datatype.uuid(),
             thumbnailUrl: faker.image.city(),
-            title: faker.lorem.sentences(10),
+            title: faker.lorem.words(1),
             views: faker.datatype.number(),
             canalName: faker.lorem.words(25),
             category: categories[faker.datatype.number({ min: 0, max: 5 })],
-            description: faker.lorem.paragraphs(4),
+            description: faker.lorem.words(1),
             postedAt: faker.date.past(),
             avatarUrl: faker.internet.avatar(),
         })
 
         Array.from({ length: 50 }, () => {
             data.comments.push({
+                id: faker.datatype.uuid(),
                 videoId,
+                userName: faker.name.findName(),
                 likes: faker.datatype.number(),
                 isDisliked: faker.datatype.boolean(),
                 comment: faker.lorem.paragraph(15),
                 commentedAt: faker.date.past(),
             })
         })
-
-        Array.from({ length: 15 }, () => {
-            data.tags.push({
-                id: faker.datatype.uuid(),
-                tagName: faker.lorem.words(3),
-                onClick,
-            })
-        });
     })
+
+    Array.from({ length: 15 }, () => {
+        data.tags.push({
+            id: faker.datatype.uuid(),
+            tagName: faker.lorem.words(3),
+        })
+    });
 
     return data
 };

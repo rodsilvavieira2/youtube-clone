@@ -15,9 +15,17 @@ export const VideoInfoViewsAndTimeFromNow = ({
       fontSize="0.75rem"
       color="text.secondary"
       alignItems="center"
+      flexWrap="wrap"
       spacing={1}
     >
-      <Text fontSize="inherit" as="small">
+      <Text
+        fontSize="inherit"
+        as="small"
+        _after={{
+          content: "'•'",
+          margin: "0 4px",
+        }}
+      >
         {viewsTransform(views)}
       </Text>
 

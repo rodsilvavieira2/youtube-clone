@@ -1,9 +1,20 @@
 import { Stack } from "@chakra-ui/react";
+import { BasicVideoData } from "@types";
 
 import { VideoAvatarAndActions } from "./video-avatar-and-actions";
 import { VideoDescription } from "./video-description";
 
-export const VideoCanalInfo = () => {
+type VideoCanalInfoProps = Pick<BasicVideoData, "canalName" | "description"> & {
+  subscriptionAmount: number;
+  isLoading?: boolean;
+};
+
+export const VideoCanalInfo = ({
+  canalName,
+  description,
+  subscriptionAmount,
+  isLoading,
+}: VideoCanalInfoProps) => {
   return (
     <Stack
       py={{ base: "1", lg: "3" }}
@@ -11,9 +22,13 @@ export const VideoCanalInfo = () => {
       borderBottom="1px solid"
       borderColor="shape"
     >
-      <VideoAvatarAndActions />
+      <VideoAvatarAndActions
+        canalName={canalName}
+        subscriptionAmount={subscriptionAmount}
+        isLoading={isLoading}
+      />
 
-      <VideoDescription />
+      <VideoDescription isLoading={isLoading} description={description} />
     </Stack>
   );
 };
