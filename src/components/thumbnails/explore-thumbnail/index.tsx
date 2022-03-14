@@ -1,6 +1,6 @@
 import { forwardRef, ForwardRefRenderFunction } from "react";
 
-import { Box, HStack } from "@chakra-ui/react";
+import { Avatar, Box, HStack, Stack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import {
@@ -39,44 +39,53 @@ const Base: ForwardRefRenderFunction<HTMLDivElement, ExploreThumbnailProps> = (
         },
       }}
       ref={ref}
+      flexDir={{ base: "column", sm: "row" }}
     >
       <VideoPreview
         styleProps={{
-          w: "15.375rem",
-          h: "8.625rem",
+          w: { base: "100%", sm: "15.375rem" },
+          h: { base: "13rem", sm: "8.625rem" },
         }}
         to="/"
         thumbnailUrl={thumbnailUrl}
         alt={title}
       />
 
-      <Box>
-        <VideoInfoTitle fontWeight="400" fontSize="large" w="90%">
-          {title}
-        </VideoInfoTitle>
+      <HStack alignItems="normal">
+        <Avatar
+          size="sm"
+          mt="0.6rem"
+          name={canalName}
+          display={{ base: "inline-flex", sm: "none" }}
+        />
 
-        <HStack alignItems="center" mt="1">
-          <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
+        <Stack mt={{ base: "0.5rem !important", sm: "0 !important" }}>
+          <VideoInfoTitle fontWeight="400" fontSize="large">
+            {title}
+          </VideoInfoTitle>
 
-          <VideoInfoViewsAndTimeFromNow views={views} postedAt={postedAt} />
-        </HStack>
+          <HStack alignItems="center" mt="1" flexWrap="wrap">
+            <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
 
-        <VideoInfoDescription mt="2">{description}</VideoInfoDescription>
-      </Box>
+            <VideoInfoViewsAndTimeFromNow views={views} postedAt={postedAt} />
+          </HStack>
 
-      <ThumbnailBasicMenu
-        styleProps={{
-          className: "explore-thumbnail-more-menu",
-          opacity: "0",
-          _focus: {
-            opacity: "1",
-          },
-          "aria-label": "mais opções",
-          position: "absolute",
-          right: "0",
-          top: 0,
-        }}
-      />
+          <VideoInfoDescription display={{ base: "none", sm: "-webkit-box" }}>
+            {description}
+          </VideoInfoDescription>
+        </Stack>
+
+        <ThumbnailBasicMenu
+          styleProps={{
+            className: "explore-thumbnail-more-menu",
+            opacity: { base: "1", lg: 0 },
+            _focus: {
+              opacity: "1",
+            },
+            "aria-label": "mais opções",
+          }}
+        />
+      </HStack>
     </HStack>
   );
 };

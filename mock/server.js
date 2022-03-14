@@ -48,11 +48,11 @@ module.exports = () => {
         data.explore.push({
             id: faker.datatype.uuid(),
             thumbnailUrl: faker.image.city(),
-            title: faker.lorem.words(1),
+            title: faker.lorem.words(10),
             views: faker.datatype.number(),
-            canalName: faker.lorem.words(25),
+            canalName: faker.lorem.words(35),
             category: categories[faker.datatype.number({ min: 0, max: 5 })],
-            description: faker.lorem.words(1),
+            description: faker.lorem.paragraphs(25),
             postedAt: faker.date.past(),
             avatarUrl: faker.internet.avatar(),
         })

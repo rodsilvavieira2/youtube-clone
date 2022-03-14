@@ -49,22 +49,29 @@ const category = [
 
 export default function Explore() {
   return (
-    <Stack px="1.5rem" py="1rem">
+    <Stack padding={{ base: 0, sm: "1.5rem" }} py="1rem">
       <Flex
-        flexWrap="wrap"
+        flexWrap={{ base: "nowrap", lg: "wrap" }}
+        maxWidth={{ base: "93vw", lg: "100%" }}
+        overflowX="auto"
         gap="1"
         css={{
-          "& > div": {
-            flex: "0 0 13.125rem",
+          "&::-webkit-scrollbar": {
+            height: "3px",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "transparent",
           },
         }}
+        scrollBehavior="smooth"
+        scrollSnapType="x mandatory"
       >
         {category.map((item) => (
           <ExploreCard key={item.id} {...item} />
         ))}
       </Flex>
 
-      <Heading pt="8" pb="4" fontSize="md">
+      <Heading pt="8" pb="4" fontSize="md" px={{ base: "0.5rem", sm: 0 }}>
         Vídeos em alta
       </Heading>
 

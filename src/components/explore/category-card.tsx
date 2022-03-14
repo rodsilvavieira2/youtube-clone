@@ -12,10 +12,12 @@ export const ExploreCard = ({ category, imageUrl }: ExploreCardProps) => {
       bg="primary"
       p="6"
       w="13.125rem"
+      flexShrink={0}
       _hover={{
         bg: "activeLink",
       }}
       borderRadius="8px"
+      scrollSnapAlign="start"
     >
       <Image alt={category} src={imageUrl} h="2rem" w="2rem" />
 
