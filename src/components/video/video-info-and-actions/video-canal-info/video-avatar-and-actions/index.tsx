@@ -15,14 +15,14 @@ export const VideoAvatarAndActions = ({
   isLoading,
 }: VideoAvatarAndActionsProps) => {
   return (
-    <Flex alignItems="center" justifyContent="space-between" px="0.5rem">
+    <Flex py="1" alignItems="center" justifyContent="space-between" px="0.5rem">
       <AvatarInfo
         canalName={canalName}
         subscriptionAmount={subscriptionAmount}
         isLoading={isLoading}
       />
 
-      <Subscription />
+      {!isLoading && <Subscription />}
     </Flex>
   );
 };

@@ -12,12 +12,12 @@ const categories = [
 module.exports = () => {
 
     const data = {
-        users: [{
-            id: 'f93462a9-792b-40ec-b192-81ddc4cd8253',
+        users: {
+            id: faker.datatype.uuid(),
             userName: faker.name.findName(),
             email: faker.internet.email(),
             avatarUrl: faker.internet.avatar()
-        }],
+        },
         videos: [],
         comments: [],
         explore: [],

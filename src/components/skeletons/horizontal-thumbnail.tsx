@@ -4,7 +4,6 @@ import {
   Skeleton,
   SkeletonProps,
   SkeletonText,
-  Stack,
   StackProps,
 } from "@chakra-ui/react";
 
@@ -13,7 +12,7 @@ type HorizontalThumbnailProps = {
   thumbnailProps?: SkeletonProps;
 };
 
-export const HorizontalThumbnail = ({
+export const HorizontalThumbnailSkeleton = ({
   containerProps,
   thumbnailProps,
 }: HorizontalThumbnailProps) => {

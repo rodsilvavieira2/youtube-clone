@@ -1,5 +1,8 @@
 import { Stack } from "@chakra-ui/react";
-import { RelatedVideoThumbnail, HorizontalThumbnail } from "@components";
+import {
+  RelatedVideoThumbnail,
+  HorizontalThumbnailSkeleton,
+} from "@components";
 import { useGetRelatedVideosQuery } from "@redux/api/base";
 import { BasicVideoData } from "@types";
 
@@ -21,7 +24,7 @@ export const RelatedVideosContainer = ({
         <>
           {Array.from({ length: 6 }).map((_, k) => {
             return (
-              <HorizontalThumbnail
+              <HorizontalThumbnailSkeleton
                 thumbnailProps={{
                   w: "10.5rem",
                   h: "5.875rem",

@@ -1,6 +1,6 @@
 import { forwardRef, ForwardRefRenderFunction } from "react";
 
-import { Avatar, Box, HStack, Stack } from "@chakra-ui/react";
+import { Avatar, HStack, Stack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import {

@@ -20,7 +20,7 @@ export const ActionButton = ({
   return (
     <HStack
       spacing={["1"]}
-      flexWrap="wrap"
+      flexWrap={{ base: "wrap", lg: "nowrap" }}
       flexDirection={{ base: "column", lg: "row" }}
       {...containerProps}
     >

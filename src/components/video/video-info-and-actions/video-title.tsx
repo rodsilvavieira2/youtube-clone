@@ -12,7 +12,6 @@ export const VideoTitle: React.FC<VideoTitleProps> = ({
     <Skeleton w="100%" h="1.5rem" />
   ) : (
     <Heading
-      mt="4"
       color="text.primary"
       w="100%"
       overflow="hidden"

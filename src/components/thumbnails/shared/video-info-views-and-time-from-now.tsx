@@ -1,14 +1,16 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack, StackProps, Text } from "@chakra-ui/react";
 import { dateFromNow, viewsTransform } from "@util";
 
 type VideoInfoViewsAndTimeFromNowProps = {
   views: number;
   postedAt?: Date | string;
+  containerProps?: StackProps;
 };
 
 export const VideoInfoViewsAndTimeFromNow = ({
   views,
   postedAt,
+  containerProps,
 }: VideoInfoViewsAndTimeFromNowProps) => {
   return (
     <HStack
@@ -17,6 +19,7 @@ export const VideoInfoViewsAndTimeFromNow = ({
       alignItems="center"
       flexWrap="wrap"
       spacing={1}
+      {...containerProps}
     >
       <Text
         fontSize="inherit"
@@ -30,7 +33,13 @@ export const VideoInfoViewsAndTimeFromNow = ({
       </Text>
 
       {postedAt && (
-        <Text fontSize="inherit" as="time">
+        <Text
+          fontSize="inherit"
+          as="time"
+          dateTime={
+            typeof postedAt === "string" ? postedAt : postedAt.toISOString()
+          }
+        >
           {dateFromNow(postedAt)}
         </Text>
       )}

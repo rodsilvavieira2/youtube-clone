@@ -1,4 +1,4 @@
-import { Stack } from "@chakra-ui/react";
+import { Flex, Stack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import { VideoAvatarAndActions } from "./video-avatar-and-actions";
@@ -16,7 +16,8 @@ export const VideoCanalInfo = ({
   isLoading,
 }: VideoCanalInfoProps) => {
   return (
-    <Stack
+    <Flex
+      flexDir="column"
       py={{ base: "1", lg: "3" }}
       borderTop="1px solid"
       borderBottom="1px solid"
@@ -28,7 +29,13 @@ export const VideoCanalInfo = ({
         isLoading={isLoading}
       />
 
-      <VideoDescription isLoading={isLoading} description={description} />
-    </Stack>
+      <VideoDescription
+        containerProps={{
+          display: { base: "none", lg: "block" },
+        }}
+        isLoading={isLoading}
+        description={description}
+      />
+    </Flex>
   );
 };

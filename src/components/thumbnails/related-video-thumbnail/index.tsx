@@ -1,19 +1,17 @@
-import { Avatar, Box, Flex, HStack, Stack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
-import {
-  VideoInfoCanalName,
-  VideoInfoTitle,
-  VideoInfoViewsAndTimeFromNow,
-  VideoPreview,
-} from "../shared";
+import { VideoPreview } from "../shared";
+import { RelatedVideoDesktopInfo } from "./related-video-desktop-info";
+import { RelatedVideoMobileInfo } from "./related-video-mobile-info";
 
 type RelatedVideoThumbnailProps = Pick<
   BasicVideoData,
-  "canalName" | "thumbnailUrl" | "title" | "views" | "postedAt"
+  "canalName" | "thumbnailUrl" | "title" | "views" | "postedAt" | "id"
 >;
 
 export const RelatedVideoThumbnail = ({
+  id,
   canalName,
   thumbnailUrl,
   title,
@@ -41,45 +39,30 @@ export const RelatedVideoThumbnail = ({
           w: { base: "100%", sm: "14.5rem", lg: "10.5rem" },
           h: { base: "10rem", sm: "7.5rem", lg: "5.875rem" },
         }}
-        to="/"
+        to={`/video/${id}`}
         alt={title}
         thumbnailUrl={thumbnailUrl}
       />
 
-      <HStack
-        mt={{ base: "0.5rem !important", lg: "0" }}
-        spacing={2}
-        position="relative"
-        alignItems="normal"
-      >
-        <Avatar
-          size="sm"
-          name={canalName}
-          display={{ base: "inline-flex", sm: "none" }}
-        />
+      <RelatedVideoDesktopInfo
+        canalName={canalName}
+        title={title}
+        views={views}
+        postedAt={postedAt}
+        containerProps={{
+          display: { base: "none", lg: "flex" },
+        }}
+      />
 
-        <Stack w={{ base: "100%" }} flexShrink={1}>
-          <VideoInfoTitle fontWeight="500">{title}</VideoInfoTitle>
-
-          <HStack display={{ base: "none", sm: "flex", lg: "none" }}>
-            <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
-
-            <VideoInfoViewsAndTimeFromNow views={views} />
-          </HStack>
-
-          <Avatar
-            size="sm"
-            name={canalName}
-            display={{ base: "none", sm: "flex", lg: "none" }}
-          />
-
-          <Stack display={{ base: "flex", sm: "none", lg: "flex" }}>
-            <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
-
-            <VideoInfoViewsAndTimeFromNow views={views} postedAt={postedAt} />
-          </Stack>
-        </Stack>
-      </HStack>
+      <RelatedVideoMobileInfo
+        canalName={canalName}
+        title={title}
+        views={views}
+        containerProps={{
+          pt: "0.8rem",
+          display: { base: "flex", lg: "none" },
+        }}
+      />
     </HStack>
   );
 };

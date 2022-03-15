@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { Box, Flex, Stack, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, HStack, Stack, useBreakpointValue } from "@chakra-ui/react";
 import {
   MobileVideoComments,
   VideoComments,
   VideoDisplay,
   VideoInfoAndActions,
-  VideoTags,
 } from "@components";
 import { RelatedVideosContainer } from "@containers";
 import { useObserver } from "@hooks";
@@ -32,6 +31,7 @@ export default function Video() {
     description = "",
     canalName = "",
     category = "game",
+    postedAt = new Date(),
   } = videoData || {};
 
   const [renderCommentsRef] = useObserver({
@@ -72,12 +72,20 @@ export default function Video() {
           views={views}
           description={description}
           canalName={canalName}
+          postedAt={postedAt}
         />
-        <Box visibility="hidden" ref={renderCommentsRef} />
+
+        <Box
+          m="0 !important"
+          w="0"
+          visibility="hidden"
+          ref={renderCommentsRef}
+        />
 
         <MobileVideoComments
           containerProps={{
             mt: "0 !important",
+            display: { base: "block", lg: "none" },
           }}
           comments={comments}
         />
@@ -88,7 +96,7 @@ export default function Video() {
       </Stack>
 
       <Flex
-        p={{ base: 0, sm: "0.5rem", lg: "1.5rem" }}
+        p={{ base: "0.5rem", lg: "1.5rem" }}
         w={{ base: "100%", lg: "33%" }}
         h="100%"
       >

@@ -1,4 +1,4 @@
-import { ThumbnailSkeleton } from "components/skeletons";
+import { VerticalThumbnailSkeleton } from "components/skeletons";
 import { IconType } from "react-icons";
 
 import {
@@ -67,7 +67,7 @@ export const LibrarySection = ({
       >
         {isLoading ? (
           Array.from({ length: maxItems }, (_, k) => (
-            <ThumbnailSkeleton key={k} />
+            <VerticalThumbnailSkeleton key={k} />
           ))
         ) : (
           <>

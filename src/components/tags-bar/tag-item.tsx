@@ -16,9 +16,7 @@ export const TagItem = ({ tagName }: TagItemProps) => {
       borderRadius="full"
       alignItems="center"
       flexShrink={0}
-      css={{
-        counterIncrement: "item",
-      }}
+      scrollSnapAlign="start"
     >
       <Text
         whiteSpace="nowrap"

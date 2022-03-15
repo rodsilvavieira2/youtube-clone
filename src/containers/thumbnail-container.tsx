@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
 
 import { Flex } from "@chakra-ui/react";
-import { ThumbnailSkeleton, VideoThumbnail } from "@components";
+import { VerticalThumbnailSkeleton, VideoThumbnail } from "@components";
 import { useObserver } from "@hooks";
 import { selectAllVideos, useGetAllVideosQuery } from "@redux/api";
 import { BasicVideoData } from "@types";
@@ -14,12 +13,9 @@ export const ThumbnailContainer = () => {
   const { videos, isLoading, isFetching } = useGetAllVideosQuery(
     { page: currentPage },
     {
-      selectFromResult: ({
-        data = { entities: [], ids: [] } as any,
-        ...rest
-      }) => {
+      selectFromResult: ({ data, ...rest }) => {
         return {
-          videos: selectAllVideos(data),
+          videos: data ? selectAllVideos(data) : [],
           ...rest,
         };
       },
@@ -33,7 +29,15 @@ export const ThumbnailContainer = () => {
   });
 
   const videoSkeletons = useMemo(
-    () => Array.from({ length: 8 }, (_, k) => <ThumbnailSkeleton key={k} />),
+    () =>
+      Array.from({ length: 8 }, (_, k) => (
+        <VerticalThumbnailSkeleton
+          thumbnailProps={{
+            h: "11.25rem",
+          }}
+          key={k}
+        />
+      )),
     []
   );
 

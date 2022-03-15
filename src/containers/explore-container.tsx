@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { Stack } from "@chakra-ui/react";
-import { ExploreThumbnail, HorizontalThumbnail } from "@components";
+import { ExploreThumbnail, HorizontalThumbnailSkeleton } from "@components";
 import { useObserver } from "@hooks";
 import {
   selectAllExploreVideos,
@@ -16,12 +16,9 @@ export const ExploreContainer = () => {
   const { videos, isFetching } = useGetAllExploreVideosQuery(
     { page: currentPage },
     {
-      selectFromResult: ({
-        data = { entities: [], ids: [] } as any,
-        ...rest
-      }) => {
+      selectFromResult: ({ data, ...rest }) => {
         return {
-          videos: selectAllExploreVideos(data),
+          videos: data ? selectAllExploreVideos(data) : [],
           ...rest,
         };
       },
@@ -43,7 +40,7 @@ export const ExploreContainer = () => {
   const videoSkeletons = useMemo(
     () =>
       Array.from({ length: 8 }, (_, k) => (
-        <HorizontalThumbnail
+        <HorizontalThumbnailSkeleton
           key={k}
           containerProps={{
             maxW: "53.875rem",

@@ -4,12 +4,19 @@ import {
   SkeletonCircle,
   HStack,
   SkeletonText,
+  SkeletonProps,
 } from "@chakra-ui/react";
 
-export const ThumbnailSkeleton = () => {
+type VerticalThumbnailSkeletonProps = {
+  thumbnailProps?: SkeletonProps;
+};
+
+export const VerticalThumbnailSkeleton = ({
+  thumbnailProps,
+}: VerticalThumbnailSkeletonProps) => {
   return (
     <Stack spacing={2}>
-      <Skeleton h="11.25rem" />
+      <Skeleton {...thumbnailProps} />
 
       <HStack>
         <SkeletonCircle w="2.25rem" h="2.25rem" />

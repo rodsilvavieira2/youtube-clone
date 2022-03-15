@@ -1,4 +1,6 @@
-import { Stack } from "@chakra-ui/react";
+import { VideoInfoViewsAndTimeFromNow } from "components/thumbnails";
+
+import { Flex, Stack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import { VideoActionsBar } from "./video-actions-bar";
@@ -7,7 +9,7 @@ import { VideoTitle } from "./video-title";
 
 type VideoInfoAndActionsProps = Pick<
   BasicVideoData,
-  "title" | "views" | "description" | "canalName"
+  "title" | "views" | "description" | "canalName" | "postedAt"
 > & {
   isLoading: boolean;
 };
@@ -18,10 +20,21 @@ export const VideoInfoAndActions = ({
   canalName,
   description,
   isLoading,
+  postedAt,
 }: VideoInfoAndActionsProps) => {
   return (
-    <Stack px={{ base: "0.5rem", lg: 0 }}>
+    <Flex flexDir="column" px={{ base: "0.8rem", lg: 0 }}>
       <VideoTitle isLoading={isLoading}>{title}</VideoTitle>
+
+      {!isLoading && (
+        <VideoInfoViewsAndTimeFromNow
+          containerProps={{
+            display: { base: "flex", lg: "none" },
+          }}
+          views={views}
+          postedAt={postedAt}
+        />
+      )}
 
       <VideoActionsBar isLoading={isLoading} views={views} />
 
@@ -31,6 +44,6 @@ export const VideoInfoAndActions = ({
         subscriptionAmount={0}
         isLoading={isLoading}
       />
-    </Stack>
+    </Flex>
   );
 };

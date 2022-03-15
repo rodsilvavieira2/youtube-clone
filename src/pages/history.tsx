@@ -6,7 +6,7 @@ import {
   HistoryInput,
   HistoryRadioGroup,
   HistoryThumbnail,
-  HorizontalThumbnail,
+  HorizontalThumbnailSkeleton,
   MobileHistory,
 } from "@components";
 import { useObserver } from "@hooks";
@@ -38,7 +38,7 @@ export default function History() {
     () =>
       Array.from({ length: 10 }, (_, k) => {
         return (
-          <HorizontalThumbnail
+          <HorizontalThumbnailSkeleton
             key={k}
             thumbnailProps={{
               w: "15.375rem",

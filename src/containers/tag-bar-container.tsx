@@ -9,12 +9,9 @@ export const TagsBarContainer = () => {
   const isDeskTopSidebarExpanded = useSelector(selectIsDeskTopSidebarExpanded);
 
   const { tags } = useGetAllTagsQuery(undefined, {
-    selectFromResult: ({
-      data = { entities: [], ids: [] } as any,
-      ...rest
-    }) => {
+    selectFromResult: ({ data, ...rest }) => {
       return {
-        tags: selectAllTags(data),
+        tags: data ? selectAllTags(data) : [],
         ...rest,
       };
     },

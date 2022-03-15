@@ -1,11 +1,13 @@
-import { ThumbnailPhoto } from "components/thumbnails";
 import { useState } from "react";
 
 import { HStack, Stack } from "@chakra-ui/react";
-import { VideoInfoCanalName, VideoInfoTitle } from "@components";
+import {
+  ThumbnailPhoto,
+  VideoInfoCanalName,
+  VideoInfoTitle,
+} from "@components";
 
 import { DragAndDropControl } from "./drag-and-drop-control";
-import { ItemPreview } from "./item-preview";
 import { PlayListItemMenu } from "./play-list-item-menu";
 
 export type PlayListItemProps = {
