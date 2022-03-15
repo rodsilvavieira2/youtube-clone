@@ -11,9 +11,15 @@ const playListItems = Array.from({ length: 4 }, () => ({
 
 export default function WatchLater() {
   return (
-    <Flex bg="bgSecondary" h="100%" overflow="hidden">
-      <Box w="22rem" bg="bg" flexShrink={0}>
-        <Box position="fixed" w="22rem" p="1rem">
+    <Flex bg="bgSecondary" h="100%" flexWrap={{ base: "wrap", md: "nowrap" }}>
+      <Box w={{ base: "100%", md: "22rem" }} bg="bg" flexShrink={0}>
+        <Box
+          position={{ base: "relative", md: "fixed" }}
+          w={{ base: "100%", md: "22rem" }}
+          h={{ base: "auto", md: "100%" }}
+          p="1rem"
+          bg="primary"
+        >
           <PlaylistInfo
             imagePreviewUrl={faker.image.abstract()}
             title={faker.lorem.words(3)}

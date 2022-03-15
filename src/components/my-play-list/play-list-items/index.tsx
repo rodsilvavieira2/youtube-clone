@@ -1,6 +1,8 @@
 import { Reorder } from "framer-motion";
 import { useState } from "react";
 
+import { useBreakpointValue } from "@chakra-ui/react";
+
 import { PlayListItem, PlayListItemProps } from "../play-list-item";
 
 type PlayListItemsProps = {
@@ -10,21 +12,29 @@ type PlayListItemsProps = {
 export const PlayListItems = ({ items }: PlayListItemsProps) => {
   const [currentItems, setCurrentItems] = useState(items);
 
+  const isOnMobileView = useBreakpointValue({
+    base: true,
+    lg: false,
+  });
+
   return (
     <Reorder.Group
-      axis="y"
       style={{
         flexDirection: "column",
         listStyle: "none",
         overflowY: "auto",
         width: "100%",
+        height: "100%",
+        paddingBottom: isOnMobileView ? "3.8rem" : 0,
       }}
       layoutScroll
       values={items}
-      onReorder={(data) => console.log("order", data)}
+      onReorder={setCurrentItems}
     >
       {currentItems.map((item) => (
-        <PlayListItem key={item.id} {...item} />
+        <Reorder.Item key={item.id} value={item} id={item.id}>
+          <PlayListItem {...item} />
+        </Reorder.Item>
       ))}
     </Reorder.Group>
   );
