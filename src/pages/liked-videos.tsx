@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { PlaylistInfo, PlayListItem } from "@components";
+import { PlaylistInfo, PlayListItems } from "@components";
 import faker from "@faker-js/faker";
 
 const playListItems = Array.from({ length: 10 }, () => ({
@@ -11,9 +11,15 @@ const playListItems = Array.from({ length: 10 }, () => ({
 
 export default function LikedVideos() {
   return (
-    <Flex bg="bgSecondary">
-      <Box w="22rem" bg="bg" flexShrink={0}>
-        <Box position="fixed" w="22rem" p="1rem">
+    <Flex bg="bgSecondary" h="100%" flexWrap={{ base: "wrap", md: "nowrap" }}>
+      <Box w={{ base: "100%", md: "22rem" }} bg="bg" flexShrink={0}>
+        <Box
+          position={{ base: "relative", md: "fixed" }}
+          w={{ base: "100%", md: "22rem" }}
+          h={{ base: "auto", md: "100%" }}
+          p="1rem"
+          bg="primary"
+        >
           <PlaylistInfo
             imagePreviewUrl={faker.image.abstract()}
             title={faker.lorem.words(3)}
@@ -27,13 +33,7 @@ export default function LikedVideos() {
         </Box>
       </Box>
 
-      <Box flex={1}>
-        <Flex py="5" flexDir="column">
-          {playListItems.map((item) => (
-            <PlayListItem key={item.id} {...item} />
-          ))}
-        </Flex>
-      </Box>
+      <PlayListItems items={playListItems} />
     </Flex>
   );
 }

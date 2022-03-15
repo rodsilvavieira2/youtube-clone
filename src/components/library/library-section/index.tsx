@@ -1,3 +1,4 @@
+import { ThumbnailSkeleton } from "components/skeletons";
 import { IconType } from "react-icons";
 
 import {
@@ -19,6 +20,7 @@ type LibrarySectionProps = {
   items: BasicVideoData[];
   maxItems?: number;
   amount?: number;
+  isLoading?: boolean;
 };
 
 export const LibrarySection = ({
@@ -27,6 +29,7 @@ export const LibrarySection = ({
   icon,
   maxItems = 4,
   amount,
+  isLoading,
 }: LibrarySectionProps) => {
   return (
     <Box borderBottom="1px solid" borderColor="shape" paddingBottom={8}>
@@ -62,9 +65,17 @@ export const LibrarySection = ({
         gap="2"
         rowGap={10}
       >
-        {items.slice(0, maxItems).map((item) => (
-          <LibraryThumbnail key={item.id} {...item} />
-        ))}
+        {isLoading ? (
+          Array.from({ length: maxItems }, (_, k) => (
+            <ThumbnailSkeleton key={k} />
+          ))
+        ) : (
+          <>
+            {items.slice(0, maxItems).map((item) => (
+              <LibraryThumbnail key={item.id} {...item} />
+            ))}
+          </>
+        )}
       </SimpleGrid>
     </Box>
   );

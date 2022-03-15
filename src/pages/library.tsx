@@ -9,7 +9,7 @@ import {
 import { useGetLibraryQuery } from "@redux/api";
 
 export default function Library() {
-  const { data = [] } = useGetLibraryQuery();
+  const { data = [], isLoading } = useGetLibraryQuery();
 
   return (
     <Flex>
@@ -19,6 +19,7 @@ export default function Library() {
           items={data}
           title="Histórico"
           maxItems={8}
+          isLoading={isLoading}
         />
 
         <LibrarySection
@@ -27,6 +28,7 @@ export default function Library() {
           title="Assistir mais tarde"
           maxItems={4}
           amount={data.length}
+          isLoading={isLoading}
         />
 
         <LibrarySection
@@ -34,6 +36,7 @@ export default function Library() {
           items={data}
           title="Playlists"
           maxItems={4}
+          isLoading={isLoading}
         />
 
         <LibrarySection
@@ -42,6 +45,7 @@ export default function Library() {
           title="Vídeos marcados como 'Gosteis'"
           maxItems={4}
           amount={data.length}
+          isLoading={isLoading}
         />
       </Stack>
 
