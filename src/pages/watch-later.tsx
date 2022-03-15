@@ -1,9 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Box, Flex } from "@chakra-ui/react";
-import { PlaylistInfo, PlayListItem } from "@components";
+import { PlaylistInfo, PlayListItems } from "@components";
 import faker from "@faker-js/faker";
 
-const playListItems = Array.from({ length: 10 }, () => ({
+const playListItems = Array.from({ length: 4 }, () => ({
   id: faker.datatype.uuid(),
   thumbUrl: faker.image.abstract(),
   canalName: faker.lorem.words(10),
@@ -12,7 +11,7 @@ const playListItems = Array.from({ length: 10 }, () => ({
 
 export default function WatchLater() {
   return (
-    <Flex bg="bgSecondary">
+    <Flex bg="bgSecondary" h="100%" overflow="hidden">
       <Box w="22rem" bg="bg" flexShrink={0}>
         <Box position="fixed" w="22rem" p="1rem">
           <PlaylistInfo
@@ -28,13 +27,7 @@ export default function WatchLater() {
         </Box>
       </Box>
 
-      <Box flex={1}>
-        <Flex py="5" flexDir="column">
-          {playListItems.map((item) => (
-            <PlayListItem key={item.id} {...item} />
-          ))}
-        </Flex>
-      </Box>
+      <PlayListItems items={playListItems} />
     </Flex>
   );
 }
