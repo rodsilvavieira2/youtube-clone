@@ -1,13 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { PlaylistInfo, PlayListItems } from "@components";
+import { PlaylistInfo } from "@components";
+import { WatchLaterListContainer } from "@containers";
 import faker from "@faker-js/faker";
-
-const playListItems = Array.from({ length: 4 }, () => ({
-  id: faker.datatype.uuid(),
-  thumbUrl: faker.image.abstract(),
-  canalName: faker.lorem.words(10),
-  title: faker.lorem.words(10),
-}));
 
 export default function WatchLater() {
   return (
@@ -33,7 +27,7 @@ export default function WatchLater() {
         </Box>
       </Box>
 
-      <PlayListItems items={playListItems} />
+      <WatchLaterListContainer />
     </Flex>
   );
 }

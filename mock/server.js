@@ -69,24 +69,6 @@ module.exports = () => {
             }))
         })
 
-        data["watch-later"].push({
-            id: videoId,
-            thumbnailUrl: faker.image.city(),
-            title: faker.lorem.paragraphs(20),
-            views: faker.datatype.number(),
-            canalName: faker.lorem.words(25),
-            category: categories[faker.datatype.number({ min: 0, max: 5 })],
-            description: faker.lorem.paragraphs(10),
-            postedAt: faker.date.past(),
-            avatarUrl: faker.internet.avatar(),
-            tags: Array.from({
-                length: 5
-            }, () => ({
-                id: faker.datatype.uuid(),
-                tagName: faker.lorem.words(3)
-            }))
-        })
-
         data.videos.push({
             id: videoId,
             thumbnailUrl: faker.image.city(),
@@ -139,6 +121,26 @@ module.exports = () => {
 
     Array.from({ length: 20 }, () => {
         data["liked-videos"].push({
+            id: faker.datatype.uuid(),
+            thumbnailUrl: faker.image.city(),
+            title: faker.lorem.paragraphs(20),
+            views: faker.datatype.number(),
+            canalName: faker.lorem.words(25),
+            category: categories[faker.datatype.number({ min: 0, max: 5 })],
+            description: faker.lorem.paragraphs(10),
+            postedAt: faker.date.past(),
+            avatarUrl: faker.internet.avatar(),
+            tags: Array.from({
+                length: 5
+            }, () => ({
+                id: faker.datatype.uuid(),
+                tagName: faker.lorem.words(3)
+            }))
+        })
+    })
+
+    Array.from({ length: 20 }, () => {
+        data["watch-later"].push({
             id: faker.datatype.uuid(),
             thumbnailUrl: faker.image.city(),
             title: faker.lorem.paragraphs(20),

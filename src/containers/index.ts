@@ -7,3 +7,4 @@ export * from "./related-videos-container";
 export * from "./header-container";
 export * from "./video-comments-container";
 export * from "./liked-videos-list-container";
+export * from "./watch-later-list-container";
