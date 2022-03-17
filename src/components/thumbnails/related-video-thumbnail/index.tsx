@@ -1,3 +1,5 @@
+import { forwardRef, ForwardRefRenderFunction } from "react";
+
 import { HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
@@ -10,14 +12,10 @@ type RelatedVideoThumbnailProps = Pick<
   "canalName" | "thumbnailUrl" | "title" | "views" | "postedAt" | "id"
 >;
 
-export const RelatedVideoThumbnail = ({
-  id,
-  canalName,
-  thumbnailUrl,
-  title,
-  views,
-  postedAt,
-}: RelatedVideoThumbnailProps) => {
+const Base: ForwardRefRenderFunction<
+  HTMLDivElement,
+  RelatedVideoThumbnailProps
+> = ({ id, canalName, thumbnailUrl, title, views, postedAt }, ref) => {
   return (
     <HStack
       position="relative"
@@ -33,6 +31,7 @@ export const RelatedVideoThumbnail = ({
           },
         },
       }}
+      ref={ref}
     >
       <VideoPreview
         styleProps={{
@@ -66,3 +65,5 @@ export const RelatedVideoThumbnail = ({
     </HStack>
   );
 };
+
+export const RelatedVideoThumbnail = forwardRef(Base);

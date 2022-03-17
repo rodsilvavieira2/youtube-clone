@@ -1,15 +1,9 @@
 import { useParams } from "react-router-dom";
 
-import { Box, Flex, HStack, Stack, useBreakpointValue } from "@chakra-ui/react";
-import {
-  MobileVideoComments,
-  VideoComments,
-  VideoDisplay,
-  VideoInfoAndActions,
-} from "@components";
-import { RelatedVideosContainer } from "@containers";
-import { useObserver } from "@hooks";
-import { useGetVideoCommentsMutation, useGetVideoQuery } from "@redux/api";
+import { Flex, Stack } from "@chakra-ui/react";
+import { VideoDisplay, VideoInfoAndActions } from "@components";
+import { RelatedVideosContainer, VideoCommentsContainer } from "@containers";
+import { useGetVideoQuery } from "@redux/api";
 
 type UrlParams = {
   id: string;
@@ -22,9 +16,6 @@ export default function Video() {
     id,
   });
 
-  const [getComments, { data: comments = [], isLoading: isLoadingComments }] =
-    useGetVideoCommentsMutation();
-
   const {
     title = "",
     views = 0,
@@ -33,20 +24,6 @@ export default function Video() {
     category = "game",
     postedAt = new Date(),
   } = videoData || {};
-
-  const [renderCommentsRef] = useObserver({
-    onVisible: () => {
-      getComments({ videoId: id });
-    },
-    config: {
-      unobserveOnIntersect: true,
-    },
-  });
-
-  const isOnDesktopView = useBreakpointValue({
-    base: false,
-    lg: true,
-  });
 
   return (
     <Flex
@@ -75,24 +52,7 @@ export default function Video() {
           postedAt={postedAt}
         />
 
-        <Box
-          m="0 !important"
-          w="0"
-          visibility="hidden"
-          ref={renderCommentsRef}
-        />
-
-        <MobileVideoComments
-          containerProps={{
-            mt: "0 !important",
-            display: { base: "block", lg: "none" },
-          }}
-          comments={comments}
-        />
-
-        {isOnDesktopView && (
-          <VideoComments isLoading={isLoadingComments} comments={comments} />
-        )}
+        <VideoCommentsContainer id={id} />
       </Stack>
 
       <Flex

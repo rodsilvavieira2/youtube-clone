@@ -1,22 +1,27 @@
-import { createEntityAdapter, EntityState } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BasicVideoData, VideoCategory, VideoComment } from "@types";
-
-const videosAdapter = createEntityAdapter<BasicVideoData>({
-  selectId: (data) => data.id,
-});
-
-const initialState = videosAdapter.getInitialState();
+import {
+  BasicVideoData,
+  PaginationResult,
+  VideoCategory,
+  VideoComment,
+} from "@types";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3004" }),
   tagTypes: ["videos", "explore", "tags"],
   endpoints: (builder) => ({
-    getAllVideos: builder.query<EntityState<BasicVideoData>, { page: number }>({
+    getAllVideos: builder.query<
+      PaginationResult<BasicVideoData>,
+      { page: number }
+    >({
       query: ({ page }) => `/videos?_page=${page}&_limit=20`,
-      transformResponse: (data: BasicVideoData[]) => {
-        return videosAdapter.setAll(initialState, data);
+      transformResponse: (data: BasicVideoData[], meta) => {
+        const haveMore = !!meta?.response?.headers.get("Link");
+        return {
+          haveMore,
+          items: data,
+        };
       },
       providesTags: ["videos"],
     }),
@@ -26,13 +31,33 @@ export const baseApi = createApi({
         error ? [] : [{ type: "videos", id }],
     }),
     getRelatedVideos: builder.query<
-      BasicVideoData[],
-      { category: VideoCategory }
+      PaginationResult<BasicVideoData>,
+      { category: VideoCategory; page: number }
     >({
-      query: ({ category }) => `/videos?category=${category}`,
+      query: ({ category, page }) =>
+        `/videos?category=${category}&_page=${page}&_limit=13`,
+      transformResponse: (data: BasicVideoData[], meta) => {
+        const haveMore = !!meta?.response?.headers.get("Link");
+        return {
+          haveMore,
+          items: data,
+        };
+      },
     }),
-    getVideoComments: builder.mutation<VideoComment[], { videoId: string }>({
-      query: ({ videoId }) => `/comments?videoId=${videoId}`,
+    getVideoComments: builder.query<
+      PaginationResult<VideoComment>,
+      { videoId: string; page: number }
+    >({
+      query: ({ videoId, page }) =>
+        `/comments?videoId=${videoId}&_page=${page}&_limit=13`,
+      transformResponse: (data: VideoComment[], meta) => {
+        const haveMore = !!meta?.response?.headers.get("Link");
+
+        return {
+          items: data,
+          haveMore,
+        };
+      },
     }),
   }),
 });
@@ -40,8 +65,6 @@ export const baseApi = createApi({
 export const {
   useGetAllVideosQuery,
   useGetVideoQuery,
-  useGetVideoCommentsMutation,
+  useGetVideoCommentsQuery,
   useGetRelatedVideosQuery,
 } = baseApi;
-
-export const { selectAll: selectAllVideos } = videosAdapter.getSelectors();

@@ -34,3 +34,17 @@ export type VideoComment = {
   responses: VideoComment[];
   commentedAt: Date;
 };
+
+export type UserInfo = {
+  id: string;
+  userName: string;
+  email: string;
+  avatarUrl: string;
+  createAt: string;
+  updatedAt: string;
+};
+
+export type PaginationResult<T = unknown> = {
+  items: T[];
+  haveMore: boolean;
+};

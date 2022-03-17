@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Box, Flex } from "@chakra-ui/react";
+import { UserInfo } from "@types";
 
 import { AccountActions } from "./account-actions";
 import { Brand } from "./brand";
@@ -9,9 +10,15 @@ import { SearchInput } from "./search-input";
 
 type HeaderProps = {
   onToggleSidebar: () => void;
-};
+  isLoading?: boolean;
+} & Partial<Pick<UserInfo, "userName" | "avatarUrl">>;
 
-export const Header = ({ onToggleSidebar }: HeaderProps) => {
+export const Header = ({
+  onToggleSidebar,
+  isLoading,
+  avatarUrl,
+  userName,
+}: HeaderProps) => {
   const [shouldShowMobileInput, setShouldShowMobileInput] = useState(false);
 
   return (
@@ -38,6 +45,9 @@ export const Header = ({ onToggleSidebar }: HeaderProps) => {
 
         <AccountActions
           onOpenMobileSearch={() => setShouldShowMobileInput(true)}
+          isLoading={isLoading}
+          avatarUrl={avatarUrl}
+          userName={userName}
         />
 
         {shouldShowMobileInput && (

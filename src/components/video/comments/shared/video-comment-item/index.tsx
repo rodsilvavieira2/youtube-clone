@@ -1,9 +1,9 @@
+import "dayjs/locale/pt";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 
 import { Avatar, Box, HStack, Text } from "@chakra-ui/react";
-
-import "dayjs/locale/pt";
 import { VideoComment } from "@types";
 
 import { Comment } from "./comment";
@@ -16,14 +16,10 @@ dayjs.extend(relativeTime);
 
 export type CommentItemProps = VideoComment;
 
-export const VideoCommentItem = ({
-  userName,
-  comment,
-  avatarUrl,
-  isDisliked,
-  likes,
-  commentedAt,
-}: CommentItemProps) => {
+const Base: ForwardRefRenderFunction<HTMLDivElement, CommentItemProps> = (
+  { userName, comment, avatarUrl, likes, commentedAt },
+  ref
+) => {
   return (
     <HStack w="100%">
       <Avatar
@@ -31,6 +27,7 @@ export const VideoCommentItem = ({
         size="md"
         src={avatarUrl}
         alignSelf="flex-start"
+        ref={ref}
       />
 
       <Box>
@@ -58,3 +55,5 @@ export const VideoCommentItem = ({
     </HStack>
   );
 };
+
+export const VideoCommentItem = forwardRef(Base);

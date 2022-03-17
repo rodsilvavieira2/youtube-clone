@@ -16,7 +16,9 @@ module.exports = () => {
             id: faker.datatype.uuid(),
             userName: faker.name.findName(),
             email: faker.internet.email(),
-            avatarUrl: faker.internet.avatar()
+            avatarUrl: faker.internet.avatar(),
+            updatedAt: faker.date.past(),
+            createdAt: faker.date.past()
         },
         videos: [],
         comments: [],
@@ -26,7 +28,7 @@ module.exports = () => {
         history: []
     };
 
-    Array.from({ length: 500 }, () => {
+    Array.from({ length: 40 }, () => {
         const videoId = faker.datatype.uuid()
 
         data.library.push({

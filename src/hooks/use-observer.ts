@@ -9,21 +9,24 @@ export type UsePaginationParams = {
 export function useObserver({ onVisible, config }: UsePaginationParams) {
   const observer = useRef<IntersectionObserver>();
 
-  const elementRef = useCallback((node: Element | null) => {
-    if (observer.current) observer.current.disconnect();
+  const elementRef = useCallback(
+    (node: Element | null) => {
+      if (observer.current) observer.current.disconnect();
 
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        onVisible();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          onVisible();
 
-        if (config?.unobserveOnIntersect && node) {
-          observer.current?.unobserve(node);
+          if (config?.unobserveOnIntersect && node) {
+            observer.current?.unobserve(node);
+          }
         }
-      }
-    }, config);
+      }, config);
 
-    if (node) observer.current.observe(node);
-  }, []);
+      if (node) observer.current.observe(node);
+    },
+    [onVisible, config]
+  );
 
   return [elementRef];
 }

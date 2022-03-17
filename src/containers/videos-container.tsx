@@ -3,29 +3,15 @@ import { useEffect, useMemo, useState } from "react";
 import { Flex } from "@chakra-ui/react";
 import { VerticalThumbnailSkeleton, VideoThumbnail } from "@components";
 import { useObserver } from "@hooks";
-import { selectAllVideos, useGetAllVideosQuery } from "@redux/api";
+import { useGetAllVideosQuery } from "@redux/api";
 import { BasicVideoData } from "@types";
 
-export const ThumbnailContainer = () => {
+export const VideosContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentVideos, setCurrentVideos] = useState<BasicVideoData[]>([]);
 
-  const { videos, isLoading, isFetching } = useGetAllVideosQuery(
-    { page: currentPage },
-    {
-      selectFromResult: ({ data, ...rest }) => {
-        return {
-          videos: data ? selectAllVideos(data) : [],
-          ...rest,
-        };
-      },
-    }
-  );
-
-  const [lastVideoRef] = useObserver({
-    onVisible: () => {
-      if (!isFetching) setCurrentPage((prev) => prev + 1);
-    },
+  const { data, isLoading, isFetching } = useGetAllVideosQuery({
+    page: currentPage,
   });
 
   const videoSkeletons = useMemo(
@@ -41,9 +27,17 @@ export const ThumbnailContainer = () => {
     []
   );
 
+  const { items = [], haveMore } = data || {};
+
+  const [lastVideoRef] = useObserver({
+    onVisible: () => {
+      if (!isFetching && haveMore) setCurrentPage((prev) => prev + 1);
+    },
+  });
+
   useEffect(() => {
-    if (videos.length) setCurrentVideos((prev) => [...prev, ...videos]);
-  }, [videos]);
+    if (items.length) setCurrentVideos((prev) => [...prev, ...items]);
+  }, [items]);
 
   return (
     <Flex
@@ -57,6 +51,7 @@ export const ThumbnailContainer = () => {
       pt="1.5rem"
       pb="5rem"
       gap="1rem"
+      rowGap="4rem"
       flexWrap="wrap"
       w="100%"
       overflow="hidden"
@@ -68,12 +63,17 @@ export const ThumbnailContainer = () => {
           {currentVideos.map((item, i) => {
             if (i + 1 === currentVideos.length) {
               return (
-                <VideoThumbnail ref={lastVideoRef} key={item.id} {...item} />
+                <VideoThumbnail
+                  ref={haveMore ? lastVideoRef : undefined}
+                  key={item.id}
+                  {...item}
+                />
               );
             }
 
             return <VideoThumbnail key={item.id} {...item} />;
           })}
+
           {isFetching && !isLoading && videoSkeletons}
         </>
       )}

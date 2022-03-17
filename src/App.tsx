@@ -1,9 +1,9 @@
 import { Suspense } from "react";
-import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import { Box, useBreakpointValue } from "@chakra-ui/react";
-import { FallBack, Header } from "@components";
+import { Box } from "@chakra-ui/react";
+import { FallBack } from "@components";
+import { HeaderContainer } from "@containers";
 import { PrimaryPageLayout } from "@layouts";
 import {
   Home,
@@ -14,19 +14,8 @@ import {
   WatchLater,
   LikedVideos,
 } from "@pages";
-import {
-  toggleIsDeskTopSidebarOpen,
-  toggleMobileSidebarOpen,
-} from "@redux/slices";
 
 export const App = () => {
-  const dispatch = useDispatch();
-
-  const isOnMobile = useBreakpointValue({
-    base: true,
-    lg: false,
-  });
-
   return (
     <Box
       h="100vh"
@@ -35,15 +24,7 @@ export const App = () => {
       overflow="auto"
       data-type="root-container"
     >
-      <Header
-        onToggleSidebar={() =>
-          dispatch(
-            isOnMobile
-              ? toggleMobileSidebarOpen()
-              : toggleIsDeskTopSidebarOpen()
-          )
-        }
-      />
+      <HeaderContainer />
 
       <Suspense fallback={<FallBack />}>
         <Routes>
