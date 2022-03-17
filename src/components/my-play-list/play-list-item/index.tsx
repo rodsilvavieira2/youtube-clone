@@ -6,22 +6,21 @@ import {
   VideoInfoCanalName,
   VideoInfoTitle,
 } from "@components";
+import { BasicVideoData } from "@types";
 
 import { DragAndDropControl } from "./drag-and-drop-control";
 import { PlayListItemMenu } from "./play-list-item-menu";
 
-export type PlayListItemProps = {
-  id: string;
-  thumbUrl: string;
-  canalName: string;
-  title: string;
-};
+export type PlayListItemProps = Pick<
+  BasicVideoData,
+  "id" | "canalName" | "thumbnailUrl" | "title"
+>;
 
 export const PlayListItem = (props: PlayListItemProps) => {
   const [isHovingContent, setIsHovingContent] = useState(false);
   const [isHovingDragContent, setIsHovingDragContent] = useState(false);
 
-  const { canalName, thumbUrl, title } = props;
+  const { canalName, thumbnailUrl, title } = props;
 
   return (
     <HStack
@@ -58,7 +57,7 @@ export const PlayListItem = (props: PlayListItemProps) => {
             h: "4.25rem",
             flexShrink: 0,
           }}
-          thumbnailUrl={thumbUrl}
+          thumbnailUrl={thumbnailUrl}
           alt={title}
         />
 

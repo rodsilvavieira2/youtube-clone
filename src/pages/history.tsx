@@ -16,22 +16,22 @@ import { BasicVideoData } from "@types";
 export default function History() {
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [currentHistoryItems, setCurrentHistoryItems] = useState<
-    BasicVideoData[]
-  >([]);
+  const [currentItems, setCurrentItems] = useState<BasicVideoData[]>([]);
 
-  const {
-    data = [],
-    isLoading,
-    isFetching,
-  } = useGetHistoryQuery({ page: currentPage });
+  const { data, isLoading, isFetching } = useGetHistoryQuery({
+    page: currentPage,
+  });
+
+  const { items = [], haveMore } = data || {};
 
   useEffect(() => {
-    if (data.length) setCurrentHistoryItems((prev) => [...prev, ...data]);
-  }, [data]);
+    if (items.length) setCurrentItems((prev) => [...prev, ...items]);
+  }, [items]);
 
   const [lastItemRef] = useObserver({
-    onVisible: () => setCurrentPage((prev) => prev + 1),
+    onVisible: () => {
+      if (!isFetching && haveMore) setCurrentPage((prev) => prev + 1);
+    },
   });
 
   const loadingSkeletons = useMemo(
@@ -69,12 +69,12 @@ export default function History() {
             loadingSkeletons
           ) : (
             <>
-              {currentHistoryItems.map((item, k) => {
-                if (currentHistoryItems.length === k + 1) {
+              {currentItems.map((item, k) => {
+                if (currentItems.length === k + 1) {
                   return (
                     <HistoryThumbnail
                       key={item.id}
-                      ref={lastItemRef}
+                      ref={haveMore ? lastItemRef : undefined}
                       {...item}
                     />
                   );

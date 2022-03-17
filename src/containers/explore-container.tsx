@@ -3,39 +3,32 @@ import { useEffect, useMemo, useState } from "react";
 import { Stack } from "@chakra-ui/react";
 import { ExploreThumbnail, HorizontalThumbnailSkeleton } from "@components";
 import { useObserver } from "@hooks";
-import {
-  selectAllExploreVideos,
-  useGetAllExploreVideosQuery,
-} from "@redux/api";
+import { useGetAllExploreVideosQuery } from "@redux/api";
 import { BasicVideoData } from "@types";
 
 export const ExploreContainer = () => {
-  const [currentVideos, setCurrentVideos] = useState<BasicVideoData[]>([]);
+  const [currentItems, setCurrentItems] = useState<BasicVideoData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { videos, isFetching } = useGetAllExploreVideosQuery(
-    { page: currentPage },
-    {
-      selectFromResult: ({ data, ...rest }) => {
-        return {
-          videos: data ? selectAllExploreVideos(data) : [],
-          ...rest,
-        };
-      },
-    }
-  );
+  const { data, isFetching } = useGetAllExploreVideosQuery({
+    page: currentPage,
+  });
+
+  const { items = [], haveMore } = data || {};
 
   const [lastVideoRef] = useObserver({
     onVisible: () => {
-      setCurrentPage((prev) => prev + 1);
+      if (!isFetching && haveMore) {
+        setCurrentPage((prev) => prev + 1);
+      }
     },
   });
 
   useEffect(() => {
-    if (videos.length) {
-      setCurrentVideos((prev) => [...prev, ...videos]);
+    if (items.length) {
+      setCurrentItems((prev) => [...prev, ...items]);
     }
-  }, [videos]);
+  }, [items]);
 
   const videoSkeletons = useMemo(
     () =>
@@ -55,10 +48,14 @@ export const ExploreContainer = () => {
 
   return (
     <Stack spacing={4}>
-      {currentVideos.map((item, i) => {
-        if (currentVideos.length === i + 1) {
+      {currentItems.map((item, i) => {
+        if (currentItems.length === i + 1) {
           return (
-            <ExploreThumbnail key={item.id} {...item} ref={lastVideoRef} />
+            <ExploreThumbnail
+              key={item.id}
+              {...item}
+              ref={haveMore ? lastVideoRef : undefined}
+            />
           );
         }
 

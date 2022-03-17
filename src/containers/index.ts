@@ -6,3 +6,4 @@ export * from "./explore-container";
 export * from "./related-videos-container";
 export * from "./header-container";
 export * from "./video-comments-container";
+export * from "./liked-videos-list-container";

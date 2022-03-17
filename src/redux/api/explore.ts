@@ -1,23 +1,21 @@
-import { createEntityAdapter, EntityState } from "@reduxjs/toolkit";
-import { BasicVideoData } from "@types";
+import { BasicVideoData, PaginationResult } from "@types";
 
 import { baseApi } from "./base";
-
-const exploreAdapter = createEntityAdapter<BasicVideoData>({
-  selectId: (data) => data.id,
-});
-
-const initialState = exploreAdapter.getInitialState();
 
 export const exploreApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllExploreVideos: builder.query<
-      EntityState<BasicVideoData>,
+      PaginationResult<BasicVideoData>,
       { page: number }
     >({
       query: (page) => `/explore?_page=${page}&_limit=20`,
-      transformResponse: (data: BasicVideoData[]) => {
-        return exploreAdapter.setAll(initialState, data);
+      transformResponse: (data: BasicVideoData[], meta) => {
+        const haveMore = !!meta?.response?.headers.get("Link");
+
+        return {
+          haveMore,
+          items: data,
+        };
       },
       providesTags: ["explore"],
     }),
@@ -25,6 +23,3 @@ export const exploreApi = baseApi.injectEndpoints({
 });
 
 export const { useGetAllExploreVideosQuery } = exploreApi;
-
-export const { selectAll: selectAllExploreVideos } =
-  exploreAdapter.getSelectors();

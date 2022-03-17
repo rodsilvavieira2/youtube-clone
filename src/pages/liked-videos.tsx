@@ -1,13 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { PlaylistInfo, PlayListItems } from "@components";
+import { PlaylistInfo } from "@components";
+import { LikedVideosListContainer } from "@containers";
 import faker from "@faker-js/faker";
-
-const playListItems = Array.from({ length: 10 }, () => ({
-  id: faker.datatype.uuid(),
-  thumbUrl: faker.image.abstract(),
-  canalName: faker.lorem.words(10),
-  title: faker.lorem.words(10),
-}));
 
 export default function LikedVideos() {
   return (
@@ -33,7 +27,7 @@ export default function LikedVideos() {
         </Box>
       </Box>
 
-      <PlayListItems items={playListItems} />
+      <LikedVideosListContainer />
     </Flex>
   );
 }

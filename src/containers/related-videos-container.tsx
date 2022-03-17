@@ -32,7 +32,9 @@ export const RelatedVideosContainer = ({
   }, [items]);
 
   const [latVideoRef] = useObserver({
-    onVisible: () => setCurrentPage((prev) => prev + 1),
+    onVisible: () => {
+      if (!isFetching && haveMore) setCurrentPage((prev) => prev + 1);
+    },
   });
 
   const loadingSkeletons = useMemo(

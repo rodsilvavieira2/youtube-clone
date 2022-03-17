@@ -1,23 +1,32 @@
 import { Reorder } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { useBreakpointValue } from "@chakra-ui/react";
+import { Center, Spinner, useBreakpointValue } from "@chakra-ui/react";
 
 import { PlayListItem, PlayListItemProps } from "../play-list-item";
 
 type PlayListItemsProps = {
   items: PlayListItemProps[];
+  isLoading?: boolean;
 };
 
-export const PlayListItems = ({ items }: PlayListItemsProps) => {
+export const PlayListItems = ({ items, isLoading }: PlayListItemsProps) => {
   const [currentItems, setCurrentItems] = useState(items);
+
+  useEffect(() => {
+    setCurrentItems(items);
+  }, [items]);
 
   const isOnMobileView = useBreakpointValue({
     base: true,
     lg: false,
   });
 
-  return (
+  return isLoading ? (
+    <Center py="3" w="100%">
+      <Spinner size="lg" />
+    </Center>
+  ) : (
     <Reorder.Group
       style={{
         flexDirection: "column",

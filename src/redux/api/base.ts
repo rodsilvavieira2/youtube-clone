@@ -9,7 +9,16 @@ import {
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3004" }),
-  tagTypes: ["videos", "explore", "tags"],
+  tagTypes: [
+    "videos",
+    "explore",
+    "tags",
+    "comments",
+    "related",
+    "history",
+    "watch-late",
+    "liked-videos",
+  ],
   endpoints: (builder) => ({
     getAllVideos: builder.query<
       PaginationResult<BasicVideoData>,
@@ -18,6 +27,7 @@ export const baseApi = createApi({
       query: ({ page }) => `/videos?_page=${page}&_limit=20`,
       transformResponse: (data: BasicVideoData[], meta) => {
         const haveMore = !!meta?.response?.headers.get("Link");
+
         return {
           haveMore,
           items: data,
@@ -43,6 +53,7 @@ export const baseApi = createApi({
           items: data,
         };
       },
+      providesTags: ["related"],
     }),
     getVideoComments: builder.query<
       PaginationResult<VideoComment>,
@@ -58,6 +69,7 @@ export const baseApi = createApi({
           haveMore,
         };
       },
+      providesTags: ["comments"],
     }),
   }),
 });

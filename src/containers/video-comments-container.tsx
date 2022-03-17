@@ -11,21 +11,17 @@ type VideoCommentsContainerProps = {
 };
 
 type CommentsLoaderProps = {
-  currentPage: number;
-  onLoadMore: () => void;
   videoId: string;
 };
 
-const CommentsLoader = ({
-  currentPage,
-  onLoadMore,
-  videoId,
-}: CommentsLoaderProps) => {
+const CommentsLoader = ({ videoId }: CommentsLoaderProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentItems, setCurrentItems] = useState<VideoComment[]>([]);
+
   const { data, isFetching } = useGetVideoCommentsQuery({
     videoId,
     page: currentPage,
   });
-  const [currentItems, setCurrentItems] = useState<VideoComment[]>([]);
 
   const isOnDesktopView = useBreakpointValue({
     base: false,
@@ -33,6 +29,10 @@ const CommentsLoader = ({
   });
 
   const { items = [], haveMore = true } = data || {};
+
+  const onLoadMore = useCallback(() => {
+    if (!isFetching && haveMore) setCurrentPage((prev) => prev + 1);
+  }, [isFetching, haveMore]);
 
   useEffect(() => {
     if (items.length) setCurrentItems((prev) => [...prev, ...items]);
@@ -66,7 +66,6 @@ const CommentsLoader = ({
 };
 
 export const VideoCommentsContainer = ({ id }: VideoCommentsContainerProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
 
   const [renderCommentsRef] = useObserver({
@@ -78,14 +77,8 @@ export const VideoCommentsContainer = ({ id }: VideoCommentsContainerProps) => {
     },
   });
 
-  const onLoadMore = useCallback(() => setCurrentPage((prev) => prev + 1), []);
-
   return isVisible ? (
-    <CommentsLoader
-      currentPage={currentPage}
-      onLoadMore={onLoadMore}
-      videoId={id}
-    />
+    <CommentsLoader videoId={id} />
   ) : (
     <div
       style={{ margin: "0 !important", visibility: "hidden" }}
