@@ -1,10 +1,10 @@
 import { v4 } from "uuid";
 
-import { Flex, Heading, Stack } from "@chakra-ui/react";
-import { ExploreCard } from "@components";
+import { Heading, Stack } from "@chakra-ui/react";
+import { VideosCategory } from "@components";
 import { ExploreContainer } from "@containers";
 
-const category = [
+const categoryCards = [
   {
     id: v4(),
     category: "Em alta",
@@ -50,26 +50,7 @@ const category = [
 export default function Explore() {
   return (
     <Stack padding={{ base: 0, sm: "1.5rem" }} py="1rem">
-      <Flex
-        flexWrap={{ base: "nowrap", lg: "wrap" }}
-        maxWidth={{ base: "93vw", lg: "100%" }}
-        overflowX="auto"
-        gap="1"
-        css={{
-          "&::-webkit-scrollbar": {
-            height: "3px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "transparent",
-          },
-        }}
-        scrollBehavior="smooth"
-        scrollSnapType="x mandatory"
-      >
-        {category.map((item) => (
-          <ExploreCard key={item.id} {...item} />
-        ))}
-      </Flex>
+      <VideosCategory items={categoryCards} />
 
       <Heading pt="8" pb="4" fontSize="md" px={{ base: "0.5rem", sm: 0 }}>
         Vídeos em alta
