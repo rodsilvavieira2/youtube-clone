@@ -1,6 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-import { StyledMenuItem } from "components/styled-menu-item";
-
 import {
   Box,
   BoxProps,
@@ -10,6 +7,7 @@ import {
   MenuButton,
   MenuList,
 } from "@chakra-ui/react";
+import { StyledMenuItem } from "@components";
 import {
   YouTubeQueue,
   YoutubeSaveList,
@@ -18,12 +16,12 @@ import {
 } from "@icons";
 
 type ThumbnailBasicMenuProps = {
-  styleProps?: IconButtonProps;
+  buttonProps?: IconButtonProps;
   containerProps?: BoxProps;
 };
 
 export const ThumbnailBasicMenu = ({
-  styleProps,
+  buttonProps,
   containerProps,
 }: ThumbnailBasicMenuProps) => {
   return (
@@ -35,7 +33,7 @@ export const ThumbnailBasicMenu = ({
           icon={<YoutubeVerticalMore />}
           variant="mutedIconButton"
           isRound
-          {...styleProps}
+          {...buttonProps}
         />
       </Box>
 
@@ -45,7 +43,7 @@ export const ThumbnailBasicMenu = ({
         </StyledMenuItem>
 
         <StyledMenuItem icon={<YoutubeWatchLater />}>
-          Salvar em "Assisir mais tarde"
+          Salvar em &quot; Assisir mais tarde &quot;
         </StyledMenuItem>
 
         <StyledMenuItem icon={<YoutubeSaveList />}>

@@ -1,9 +1,19 @@
-import { Stack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
+import { Box, Stack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
-import { ThumbnailInfo, VideoPreview } from "./shared";
+import {
+  VideoInfoCanalName,
+  VideoInfoTitle,
+  VideoInfoViewsAndTimeFromNow,
+  VideoPreview,
+} from "./shared";
 
-type LibraryThumbnailProps = Omit<BasicVideoData, "id" | "avatarUrl">;
+type LibraryThumbnailProps = Pick<
+  BasicVideoData,
+  "canalName" | "postedAt" | "thumbnailUrl" | "title" | "views" | "id"
+>;
 
 export const LibraryThumbnail = ({
   canalName,
@@ -11,6 +21,7 @@ export const LibraryThumbnail = ({
   thumbnailUrl,
   title,
   views,
+  id,
 }: LibraryThumbnailProps) => {
   return (
     <Stack>
@@ -18,15 +29,18 @@ export const LibraryThumbnail = ({
         styleProps={{ w: "100%", h: "7.375rem" }}
         thumbnailUrl={thumbnailUrl}
         alt={title}
-        to="/"
+        to={`/video/${id}`}
       />
 
-      <ThumbnailInfo
-        title={title}
-        canalName={canalName}
-        views={views}
-        postedAt={postedAt}
-      />
+      <Box>
+        <Link to={`/video/${id}`}>
+          <VideoInfoTitle>{title}</VideoInfoTitle>
+        </Link>
+
+        <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
+
+        <VideoInfoViewsAndTimeFromNow postedAt={postedAt} views={views} />
+      </Box>
     </Stack>
   );
 };

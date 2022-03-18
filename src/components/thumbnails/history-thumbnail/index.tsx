@@ -1,4 +1,5 @@
 import { forwardRef, ForwardRefRenderFunction } from "react";
+import { Link } from "react-router-dom";
 
 import { Box, HStack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
@@ -14,11 +15,11 @@ import { RemoveButton } from "./remove-button";
 
 type HistoryThumbnailProps = Pick<
   BasicVideoData,
-  "canalName" | "thumbnailUrl" | "title" | "views"
+  "canalName" | "thumbnailUrl" | "title" | "views" | "id"
 >;
 
 const Base: ForwardRefRenderFunction<HTMLDivElement, HistoryThumbnailProps> = (
-  { canalName, thumbnailUrl, title, views },
+  { canalName, thumbnailUrl, title, views, id },
   ref
 ) => {
   return (
@@ -39,11 +40,13 @@ const Base: ForwardRefRenderFunction<HTMLDivElement, HistoryThumbnailProps> = (
         }}
         thumbnailUrl={thumbnailUrl}
         alt={title}
-        to="/"
+        to={`/video/${id}`}
       />
       <HStack alignItems="normal" justifyContent="space-between">
         <Box>
-          <VideoInfoTitle>{title}</VideoInfoTitle>
+          <Link to={`/video/${id}`}>
+            <VideoInfoTitle>{title}</VideoInfoTitle>
+          </Link>
 
           <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
 

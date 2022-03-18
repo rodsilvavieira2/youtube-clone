@@ -1,4 +1,6 @@
-import { Avatar, Box, HStack, StackProps, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
+import { Avatar, Box, HStack, Text } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 import { viewsTransform } from "@util";
 
@@ -6,23 +8,23 @@ import { VideoInfoCanalName, VideoInfoTitle } from "../shared";
 
 type RelatedVideoMobileInfoProps = Pick<
   BasicVideoData,
-  "canalName" | "title" | "views"
-> & {
-  containerProps?: StackProps;
-};
+  "canalName" | "title" | "views" | "id"
+>;
 
 export const RelatedVideoMobileInfo = ({
   canalName,
   title,
   views,
-  containerProps,
+  id,
 }: RelatedVideoMobileInfoProps) => {
   return (
-    <HStack {...containerProps} alignItems="normal">
+    <HStack display={{ base: "flex", lg: "none" }} alignItems="normal">
       <Avatar size="sm" name={canalName} />
 
       <Box>
-        <VideoInfoTitle>{title}</VideoInfoTitle>
+        <Link to={`/video/${id}`}>
+          <VideoInfoTitle>{title}</VideoInfoTitle>
+        </Link>
 
         <HStack flexWrap="wrap" color="text.secondary">
           <VideoInfoCanalName fontSize="sm">{canalName}</VideoInfoCanalName>

@@ -48,19 +48,14 @@ const Base: ForwardRefRenderFunction<
         title={title}
         views={views}
         postedAt={postedAt}
-        containerProps={{
-          display: { base: "none", lg: "flex" },
-        }}
+        id={id}
       />
 
       <RelatedVideoMobileInfo
         canalName={canalName}
         title={title}
         views={views}
-        containerProps={{
-          pt: "0.8rem",
-          display: { base: "flex", lg: "none" },
-        }}
+        id={id}
       />
     </HStack>
   );

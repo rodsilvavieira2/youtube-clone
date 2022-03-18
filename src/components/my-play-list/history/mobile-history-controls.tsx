@@ -1,12 +1,8 @@
-import { Button, HStack, StackProps } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 
-type MobileHistoryProps = {
-  containerProps: StackProps;
-};
-
-export const MobileHistory = ({ containerProps }: MobileHistoryProps) => {
+export const MobileHistoryControls = () => {
   return (
-    <HStack {...containerProps}>
+    <HStack display={{ base: "flex", lg: "none" }} p="1.5rem">
       <Button
         flex="0 1  33.33%"
         variant="unstyled"
@@ -14,7 +10,7 @@ export const MobileHistory = ({ containerProps }: MobileHistoryProps) => {
         textTransform="uppercase"
         whiteSpace="normal"
       >
-        limpar todo o historico de exibição
+        limpar todo o histórico de exibição
       </Button>
 
       <Button
@@ -24,7 +20,7 @@ export const MobileHistory = ({ containerProps }: MobileHistoryProps) => {
         textTransform="uppercase"
         whiteSpace="normal"
       >
-        pauser histórico de visualizações
+        pausar histórico de visualizações
       </Button>
 
       <Button

@@ -16,7 +16,7 @@ export const ThumbnailPhoto = ({
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <Box {...containerProps} position="relative">
+    <Box position="relative" {...containerProps}>
       <Image
         w="100%"
         h="100%"

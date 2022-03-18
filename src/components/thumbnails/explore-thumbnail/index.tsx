@@ -1,4 +1,5 @@
 import { forwardRef, ForwardRefRenderFunction } from "react";
+import { Link } from "react-router-dom";
 
 import { Avatar, HStack, Stack } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
@@ -14,11 +15,17 @@ import {
 
 export type ExploreThumbnailProps = Pick<
   BasicVideoData,
-  "canalName" | "postedAt" | "thumbnailUrl" | "title" | "views" | "description"
+  | "canalName"
+  | "postedAt"
+  | "thumbnailUrl"
+  | "title"
+  | "views"
+  | "description"
+  | "id"
 >;
 
 const Base: ForwardRefRenderFunction<HTMLDivElement, ExploreThumbnailProps> = (
-  { canalName, postedAt, thumbnailUrl, title, views, description },
+  { canalName, postedAt, thumbnailUrl, title, views, description, id },
   ref
 ) => {
   return (
@@ -46,7 +53,7 @@ const Base: ForwardRefRenderFunction<HTMLDivElement, ExploreThumbnailProps> = (
           w: { base: "100%", sm: "15.375rem" },
           h: { base: "13rem", sm: "8.625rem" },
         }}
-        to="/"
+        to={`/video/${id}`}
         thumbnailUrl={thumbnailUrl}
         alt={title}
       />
@@ -60,9 +67,11 @@ const Base: ForwardRefRenderFunction<HTMLDivElement, ExploreThumbnailProps> = (
         />
 
         <Stack mt={{ base: "0.5rem !important", sm: "0 !important" }}>
-          <VideoInfoTitle fontWeight="400" fontSize="large">
-            {title}
-          </VideoInfoTitle>
+          <Link to={`/video/${id}`}>
+            <VideoInfoTitle fontWeight="400" fontSize="large">
+              {title}
+            </VideoInfoTitle>
+          </Link>
 
           <HStack alignItems="center" mt="1" flexWrap="wrap">
             <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
@@ -76,7 +85,7 @@ const Base: ForwardRefRenderFunction<HTMLDivElement, ExploreThumbnailProps> = (
         </Stack>
 
         <ThumbnailBasicMenu
-          styleProps={{
+          buttonProps={{
             className: "explore-thumbnail-more-menu",
             opacity: { base: "1", lg: 0 },
             _focus: {

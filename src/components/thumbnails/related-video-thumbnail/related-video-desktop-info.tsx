@@ -1,4 +1,6 @@
-import { Flex, StackProps } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
+import { Flex } from "@chakra-ui/react";
 import { BasicVideoData } from "@types";
 
 import {
@@ -9,21 +11,21 @@ import {
 
 type DesktopInfoProps = Pick<
   BasicVideoData,
-  "canalName" | "title" | "views" | "postedAt"
-> & {
-  containerProps?: StackProps;
-};
+  "canalName" | "title" | "views" | "postedAt" | "id"
+>;
 
 export const RelatedVideoDesktopInfo = ({
   canalName,
   postedAt,
   title,
   views,
-  containerProps,
+  id,
 }: DesktopInfoProps) => {
   return (
-    <Flex flexDir="column" {...containerProps}>
-      <VideoInfoTitle>{title}</VideoInfoTitle>
+    <Flex flexDir="column" display={{ base: "none", lg: "flex" }}>
+      <Link to={`/video/${id}`}>
+        <VideoInfoTitle>{title}</VideoInfoTitle>
+      </Link>
 
       <VideoInfoCanalName>{canalName}</VideoInfoCanalName>
 
