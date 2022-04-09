@@ -8,7 +8,9 @@ import {
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3004" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://dry-falls-57577.herokuapp.com",
+  }),
   tagTypes: [
     "videos",
     "explore",
